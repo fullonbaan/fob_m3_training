@@ -685,46 +685,64 @@
     .contact-grid { grid-template-columns: 1fr; }
   }
 
-  /* ══ SCREEN / ADMIN SYSTEM ══ */
-  .m3-screen { display: none !important; }
-  .m3-screen.active { display: block !important; }
-  #main-page.m3-screen.active { display: block !important; }
 
-  /* Admin login */
-  #admin-login-screen {
+
+
+
+  /* ══ ADMIN OVERLAY ══ */
+  .adm-trigger {
+    position: fixed; bottom: 22px; right: 22px; z-index: 9000;
+    width: 36px; height: 36px; border-radius: 10px;
+    background: rgba(13,13,13,.72); border: 1px solid rgba(255,255,255,.10);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 15px; color: rgba(255,255,255,.25);
+    backdrop-filter: blur(8px);
+    transition: color .2s, border-color .2s, background .2s;
+    text-decoration: none;
+  }
+  .adm-trigger:hover {
+    color: #c9943e; border-color: rgba(201,148,62,.4);
+    background: rgba(13,13,13,.92);
+  }
+
+  /* Full-screen overlay */
+  .adm-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 9100;
+    overflow-y: auto;
+  }
+  .adm-overlay.open { display: block; }
+
+  /* Login panel */
+  #adm-login-panel {
     min-height: 100vh;
     background: #0d0d0d;
-    display: flex; align-items: center; justify-content: center;
     background-image: radial-gradient(ellipse at 50% 0%, rgba(201,148,62,.07) 0%, transparent 65%);
+    display: flex; align-items: center; justify-content: center;
+    padding: 40px 20px;
   }
   .adm-login-card {
-    background: #161616;
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 20px;
-    padding: 48px 40px;
-    width: 100%; max-width: 400px;
-    text-align: center;
-    box-shadow: 0 32px 80px rgba(0,0,0,.6);
+    background: #161616; border: 1px solid rgba(255,255,255,.12);
+    border-radius: 20px; padding: 44px 36px;
+    width: 100%; max-width: 390px;
+    text-align: center; box-shadow: 0 32px 80px rgba(0,0,0,.7);
   }
   .adm-login-gem {
-    width: 54px; height: 54px; border-radius: 14px;
+    width: 52px; height: 52px; border-radius: 13px;
     background: linear-gradient(135deg,#1a1200,#2e2000);
     border: 1px solid rgba(201,148,62,.35);
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Cinzel', 'Noto Serif', serif;
-    font-size: 20px; color: #e8b86d;
-    margin: 0 auto 20px;
+    font-family: 'Noto Serif', serif; font-size: 20px; color: #e8b86d;
+    margin: 0 auto 18px;
     box-shadow: 0 0 24px rgba(201,148,62,.14);
   }
   .adm-login-title {
     font-family: 'Noto Serif', serif;
     font-size: 20px; color: #e8b86d; margin-bottom: 6px;
   }
-  .adm-login-sub {
-    font-size: 13px; color: #6e6b65; margin-bottom: 26px; line-height: 1.5;
-  }
+  .adm-login-sub { font-size: 13px; color: #6e6b65; margin-bottom: 24px; line-height: 1.5; }
   .adm-pw-input {
-    width: 100%; padding: 13px 16px;
+    width: 100%; padding: 12px 16px;
     background: #1e1e1e; border: 1.5px solid rgba(255,255,255,.12);
     border-radius: 10px; color: #f0ece4; font-size: 14px;
     font-family: 'DM Sans', sans-serif; margin-bottom: 10px;
@@ -734,203 +752,147 @@
   .adm-pw-input.invalid { border-color: #e05252; }
   .adm-pw-err { font-size: 12px; color: #e05252; margin-bottom: 10px; display: none; text-align: left; }
   .adm-login-btn {
-    width: 100%; padding: 13px;
+    width: 100%; padding: 12px;
     background: linear-gradient(135deg,#7a5a1a,#a87830);
     border: 1px solid rgba(201,148,62,.35); border-radius: 10px;
     color: #e8b86d; font-size: 14px; font-weight: 600;
     font-family: 'DM Sans', sans-serif; cursor: pointer;
-    transition: opacity .2s, transform .15s;
+    transition: opacity .2s, transform .15s; margin-bottom: 10px;
   }
   .adm-login-btn:hover { opacity: .9; transform: translateY(-1px); }
+  .adm-cancel-link {
+    font-size: 12px; color: #6e6b65; cursor: pointer;
+    background: none; border: none; font-family: 'DM Sans', sans-serif;
+  }
+  .adm-cancel-link:hover { color: #9a9590; }
 
-  /* Admin dashboard */
-  #admin-dash-screen {
-    min-height: 100vh;
-    background: #0d0d0d;
-    color: #f0ece4;
+  /* Dashboard panel */
+  #adm-dash-panel {
+    min-height: 100vh; background: #0d0d0d; color: #f0ece4;
     font-family: 'DM Sans', sans-serif;
   }
   .adm-topbar {
     position: sticky; top: 0; z-index: 200;
-    background: rgba(13,13,13,.94);
-    backdrop-filter: blur(12px);
+    background: rgba(13,13,13,.95); backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255,255,255,.08);
-    padding: 0 28px; height: 56px;
+    padding: 0 24px; height: 54px;
     display: flex; align-items: center; justify-content: space-between;
   }
   .adm-topbar-brand {
-    font-family: 'Noto Serif', serif;
-    font-size: 15px; color: #e8b86d;
-    display: flex; align-items: center; gap: 10px;
+    font-family: 'Noto Serif', serif; font-size: 15px; color: #e8b86d;
+    display: flex; align-items: center; gap: 9px;
   }
   .adm-topbar-gem {
-    width: 28px; height: 28px; border-radius: 7px;
+    width: 27px; height: 27px; border-radius: 7px;
     background: linear-gradient(135deg,#1a1200,#2e2000);
     border: 1px solid rgba(201,148,62,.35);
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Noto Serif', serif; font-size: 12px; color: #e8b86d;
+    font-family: 'Noto Serif', serif; font-size: 11px; color: #e8b86d;
   }
   .adm-topbar-right { display: flex; gap: 8px; align-items: center; }
+  .adm-sync { font-size: 11px; color: #6e6b65; font-family: 'DM Mono', monospace; display: flex; align-items: center; gap: 5px; }
+  .adm-sync-dot { width: 6px; height: 6px; border-radius: 50%; background: #6e6b65; transition: background .3s; }
+  .adm-sync-dot.ok     { background: #00c878; }
+  .adm-sync-dot.err    { background: #e05252; }
+  .adm-sync-dot.syncing{ background: #f5a623; animation: adm-pulse .9s infinite; }
+  @keyframes adm-pulse { 0%,100%{opacity:1}50%{opacity:.35} }
   .adm-btn-sm {
-    padding: 7px 14px; border-radius: 8px;
+    padding: 6px 13px; border-radius: 7px;
     border: 1px solid rgba(255,255,255,.12);
     background: #1e1e1e; color: #f0ece4;
-    font-size: 12px; font-family: 'DM Sans', sans-serif;
-    cursor: pointer; transition: background .18s;
+    font-size: 12px; font-family: 'DM Sans', sans-serif; cursor: pointer;
+    transition: background .18s;
   }
   .adm-btn-sm:hover { background: #252525; }
   .adm-btn-sm.gold { border-color: rgba(201,148,62,.35); color: #e8b86d; }
-  .adm-btn-sm.gold:hover { background: rgba(201,148,62,.14); }
-  .adm-sync {
-    font-size: 11px; color: #6e6b65;
-    font-family: 'DM Mono', monospace;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .adm-sync-dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: #6e6b65; transition: background .3s;
-  }
-  .adm-sync-dot.ok  { background: #00c878; }
-  .adm-sync-dot.err { background: #e05252; }
-  .adm-sync-dot.syncing {
-    background: #f5a623;
-    animation: adm-pulse .9s infinite;
-  }
-  @keyframes adm-pulse { 0%,100%{opacity:1}50%{opacity:.35} }
+  .adm-btn-sm.gold:hover { background: rgba(201,148,62,.12); }
 
-  .adm-wrap { max-width: 960px; margin: 0 auto; padding: 32px 28px 100px; }
-
-  /* Stats */
-  .adm-stats { display: grid; grid-template-columns: repeat(auto-fit,minmax(130px,1fr)); gap: 12px; margin-bottom: 24px; }
-  .adm-stat { background: #161616; border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 16px 20px; }
-  .adm-stat-val { font-size: 30px; font-weight: 700; line-height: 1; }
+  .adm-wrap { max-width: 940px; margin: 0 auto; padding: 28px 24px 80px; }
+  .adm-stats { display: grid; grid-template-columns: repeat(auto-fit,minmax(120px,1fr)); gap: 10px; margin-bottom: 22px; }
+  .adm-stat { background: #161616; border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 14px 18px; }
+  .adm-stat-val { font-size: 28px; font-weight: 700; line-height: 1; }
   .adm-stat-val.all  { color: #f0ece4; }
   .adm-stat-val.init { color: #5b8def; }
   .adm-stat-val.sub  { color: #00c878; }
-  .adm-stat-lbl { font-size: 11px; color: #6e6b65; text-transform: uppercase; letter-spacing: .06em; margin-top: 4px; }
-
-  /* Filter */
-  .adm-filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .adm-stat-lbl { font-size: 10px; color: #6e6b65; text-transform: uppercase; letter-spacing: .06em; margin-top: 3px; }
+  .adm-filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
   .adm-filter-btn {
-    padding: 6px 16px; border-radius: 20px;
-    border: 1px solid rgba(255,255,255,.08);
-    background: #161616; color: #9a9590;
-    font-size: 12px; font-family: 'DM Sans', sans-serif;
+    padding: 5px 14px; border-radius: 20px;
+    border: 1px solid rgba(255,255,255,.08); background: #161616;
+    color: #9a9590; font-size: 12px; font-family: 'DM Sans', sans-serif;
     cursor: pointer; transition: all .18s;
   }
   .adm-filter-btn:hover { border-color: rgba(255,255,255,.16); color: #f0ece4; }
   .adm-filter-btn.active { background: rgba(201,148,62,.14); border-color: rgba(201,148,62,.35); color: #e8b86d; }
-  .adm-filter-btn.active.blue-f { background: rgba(91,141,239,.12); border-color: rgba(91,141,239,.3); color: #5b8def; }
-  .adm-filter-btn.active.green-f { background: rgba(0,200,120,.10); border-color: rgba(0,200,120,.28); color: #00c878; }
-
-  /* Search */
-  .adm-search { width: 100%; padding: 11px 16px; margin-bottom: 18px;
+  .adm-filter-btn.active.bf { background: rgba(91,141,239,.12); border-color: rgba(91,141,239,.3); color: #5b8def; }
+  .adm-filter-btn.active.gf { background: rgba(0,200,120,.10); border-color: rgba(0,200,120,.28); color: #00c878; }
+  .adm-search {
+    width: 100%; padding: 10px 16px; margin-bottom: 16px;
     background: #161616; border: 1.5px solid rgba(255,255,255,.08);
     border-radius: 10px; color: #f0ece4; font-size: 13px;
     font-family: 'DM Sans', sans-serif;
   }
   .adm-search:focus { outline: none; border-color: #c9943e; }
   .adm-search::placeholder { color: #6e6b65; }
-
-  /* Section heading */
   .adm-section-hd {
-    font-size: 11px; color: #c9943e;
-    letter-spacing: .12em; text-transform: uppercase;
-    margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+    font-size: 10px; color: #c9943e; letter-spacing: .12em; text-transform: uppercase;
+    margin-bottom: 12px; display: flex; align-items: center; gap: 10px;
     font-family: 'DM Mono', monospace;
   }
   .adm-section-hd::after { content:''; flex:1; height:1px; background: rgba(255,255,255,.07); }
-
-  /* Empty */
-  .adm-empty { padding: 48px; text-align: center; color: #6e6b65; font-size: 14px; }
-  .adm-empty-icon { font-size: 38px; margin-bottom: 12px; }
-
-  /* Pay card */
+  .adm-empty { padding: 40px; text-align: center; color: #6e6b65; font-size: 14px; }
   .adm-card {
     background: #161616; border: 1px solid rgba(255,255,255,.08);
-    border-radius: 14px; padding: 20px 22px; margin-bottom: 12px;
+    border-radius: 13px; padding: 18px 20px; margin-bottom: 10px;
     transition: border-color .2s;
   }
   .adm-card:hover { border-color: rgba(255,255,255,.14); }
-  .adm-card-top {
-    display: flex; justify-content: space-between;
-    align-items: flex-start; flex-wrap: wrap; gap: 10px; margin-bottom: 14px;
-  }
+  .adm-card-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px; margin-bottom: 13px; }
   .adm-card-name { font-size: 15px; font-weight: 700; color: #f0ece4; }
   .adm-card-email { font-size: 12px; color: #9a9590; margin-top: 2px; }
-  .adm-status-badge {
-    padding: 4px 11px; border-radius: 20px;
-    font-size: 11px; font-weight: 700; letter-spacing: .04em;
-    text-transform: uppercase; white-space: nowrap;
-  }
-  .adm-badge-init { background: rgba(91,141,239,.12); border: 1px solid rgba(91,141,239,.3); color: #5b8def; }
-  .adm-badge-sub  { background: rgba(0,200,120,.10);  border: 1px solid rgba(0,200,120,.28); color: #00c878; }
-
-  /* Meta grid */
-  .adm-meta-grid {
-    display: grid; grid-template-columns: repeat(auto-fill,minmax(165px,1fr));
-    gap: 8px; margin-bottom: 14px;
-  }
-  .adm-meta-item {
-    background: #1e1e1e; border: 1px solid rgba(255,255,255,.07);
-    border-radius: 8px; padding: 8px 12px;
-  }
-  .adm-meta-val { font-size: 13px; font-weight: 600; color: #f0ece4; word-break: break-all; }
+  .adm-badge { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }
+  .adm-badge.init { background: rgba(91,141,239,.12); border: 1px solid rgba(91,141,239,.3); color: #5b8def; }
+  .adm-badge.sub  { background: rgba(0,200,120,.10);  border: 1px solid rgba(0,200,120,.28); color: #00c878; }
+  .adm-meta { display: grid; grid-template-columns: repeat(auto-fill,minmax(155px,1fr)); gap: 7px; margin-bottom: 13px; }
+  .adm-meta-item { background: #1e1e1e; border: 1px solid rgba(255,255,255,.07); border-radius: 8px; padding: 7px 11px; }
+  .adm-meta-val { font-size: 12px; font-weight: 600; color: #f0ece4; word-break: break-all; }
   .adm-meta-key { font-size: 10px; color: #6e6b65; margin-top: 2px; text-transform: uppercase; letter-spacing: .05em; }
-
-  /* Timeline */
-  .adm-timeline {
-    border-top: 1px solid rgba(255,255,255,.07); padding-top: 12px;
-    display: flex; flex-direction: column; gap: 6px;
-  }
-  .adm-tl-row { display: flex; align-items: center; gap: 10px; font-size: 12px; }
-  .adm-tl-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .adm-timeline { border-top: 1px solid rgba(255,255,255,.07); padding-top: 11px; display: flex; flex-direction: column; gap: 5px; }
+  .adm-tl-row { display: flex; align-items: center; gap: 9px; font-size: 12px; }
+  .adm-tl-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
   .adm-tl-dot.blue  { background: #5b8def; }
   .adm-tl-dot.green { background: #00c878; }
   .adm-tl-dot.grey  { background: #6e6b65; }
-  .adm-tl-lbl { color: #9a9590; min-width: 90px; }
-  .adm-tl-val { color: #f0ece4; font-family: 'DM Mono', monospace; }
-
-  /* Card actions */
-  .adm-card-actions {
-    display: flex; gap: 8px; flex-wrap: wrap;
-    margin-top: 12px; border-top: 1px solid rgba(255,255,255,.07); padding-top: 12px;
-  }
+  .adm-tl-lbl { color: #9a9590; min-width: 85px; }
+  .adm-tl-val { color: #f0ece4; font-family: 'DM Mono', monospace; font-size: 11px; }
+  .adm-card-actions { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 11px; border-top: 1px solid rgba(255,255,255,.07); padding-top: 11px; }
   .adm-copy-btn {
-    padding: 5px 12px; border-radius: 8px;
-    border: 1px solid rgba(255,255,255,.10);
-    background: #1e1e1e; color: #9a9590;
-    font-size: 12px; cursor: pointer;
-    font-family: 'DM Mono', monospace;
-    transition: all .18s;
+    padding: 5px 11px; border-radius: 7px;
+    border: 1px solid rgba(255,255,255,.10); background: #1e1e1e;
+    color: #9a9590; font-size: 11px; cursor: pointer;
+    font-family: 'DM Mono', monospace; transition: all .18s;
   }
   .adm-copy-btn:hover { border-color: rgba(201,148,62,.35); color: #e8b86d; }
-
-  /* Toast */
   .adm-toast {
-    position: fixed; bottom: 28px; left: 50%;
-    transform: translateX(-50%) translateY(20px);
+    position: fixed; bottom: 24px; left: 50%;
+    transform: translateX(-50%) translateY(16px);
     background: #252525; border: 1px solid rgba(255,255,255,.14);
-    border-radius: 10px; padding: 10px 20px;
-    font-size: 13px; color: #f0ece4;
-    box-shadow: 0 8px 32px rgba(0,0,0,.5);
-    opacity: 0; transition: opacity .25s, transform .25s;
+    border-radius: 10px; padding: 9px 18px;
+    font-size: 13px; color: #f0ece4; box-shadow: 0 8px 32px rgba(0,0,0,.5);
+    opacity: 0; transition: opacity .22s, transform .22s;
     pointer-events: none; z-index: 9999; white-space: nowrap;
     font-family: 'DM Sans', sans-serif;
   }
   .adm-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
   @media(max-width:600px){
-    .adm-topbar { padding: 0 16px; }
-    .adm-wrap { padding: 24px 16px 80px; }
-    .adm-meta-grid { grid-template-columns: 1fr 1fr; }
+    .adm-topbar { padding: 0 14px; }
+    .adm-wrap { padding: 20px 14px 70px; }
+    .adm-meta { grid-template-columns: 1fr 1fr; }
   }
 
 </style>
 </head>
 <body>
-
-<div id="main-page" class="m3-screen active">
 
 <!-- ── STICKY NAV ── -->
 <nav class="site-nav">
@@ -1261,11 +1223,11 @@
             <div class="ci-val">+91 63605 93122</div>
           </div>
         </a>
-        <a class="ci" href="/cdn-cgi/l/email-protection#294f5c454546474b484847694e44484045074a4644165a5c4b434c4a5d1460474f465b0c1b19641a0c1b197d5b48404740474e0c1b1964485d4c5b4048455a0c1b196c47585c405b500f4b464d501461400c1b196f5c454546476b4848470c1b6a0c1b19600c1b1948440c1b1940475d4c5b4c5a5d4c4d0c1b1940470c1b195d414c0c1b1960474f465b0c1b19641a0c1b197d5b48404740474e0c1b1964485d4c5b4048455a070c1b1979454c485a4c0c1b195a41485b4c0c1b1944465b4c0c1b194d4c5d4840455a07">
+        <a class="ci" href="mailto:fullonbaan@gmail.com?subject=Infor%20M3%20Training%20Materials%20Enquiry&body=Hi%20FullonBaan%2C%20I%20am%20interested%20in%20the%20Infor%20M3%20Training%20Materials.%20Please%20share%20more%20details.">
           <span class="ci-icon">✉️</span>
           <div>
             <div class="ci-label">Email</div>
-            <div class="ci-val"><span class="__cf_email__" data-cfemail="0c6a79606063626e6d6d624c6b616d6560226f6361">[email&#160;protected]</span></div>
+            <div class="ci-val">fullonbaan@gmail.com</div>
           </div>
         </a>
         <a class="ci" href="https://www.fullonbaan.com" target="_blank" rel="noopener">
@@ -1567,11 +1529,11 @@
         Instagram
       </a>
     </div>
-    <div class="footer-copy">© 2025 FullonBaan IT Solutions · Bangalore, India · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="187e6d747477767a797976587f75797174367b7775">[email&#160;protected]</a> · +91 63605 93122</div>
+    <div class="footer-copy">© 2025 FullonBaan IT Solutions · Bangalore, India · fullonbaan@gmail.com · +91 63605 93122</div>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // ═══════════════════════════════════════════════════════════════
   //  EMAILJS CREDENTIALS
   // ═══════════════════════════════════════════════════════════════
@@ -1897,410 +1859,306 @@
   }
 </script>
 
-</div><!-- /#main-page -->
 
+<!-- ══ ADMIN TRIGGER ICON (fixed bottom-right) ══ -->
+<button class="adm-trigger" title="Admin" onclick="admOpenLogin()" aria-label="Admin login">🛡</button>
 
-<!-- ══════════════════════════════════════════
-     ADMIN: LOGIN SCREEN
-══════════════════════════════════════════ -->
-<div id="admin-login-screen" class="m3-screen">
-  <div class="adm-login-card">
-    <div class="adm-login-gem">F</div>
-    <div class="adm-login-title">M3 Payment Admin</div>
-    <p class="adm-login-sub">FullonBaan · Infor M3 Training<br>Payment tracking dashboard</p>
-    <input type="password" id="adm-pw" class="adm-pw-input"
-      placeholder="Admin password"
-      onkeydown="if(event.key==='Enter')admDoLogin()"
-      oninput="this.classList.remove('invalid');document.getElementById('adm-pw-err').style.display='none'">
-    <div id="adm-pw-err" class="adm-pw-err">⚠️ Incorrect password.</div>
-    <button class="adm-login-btn" onclick="admDoLogin()">Sign In →</button>
-  </div>
-</div>
+<!-- ══ ADMIN OVERLAY ══ -->
+<div class="adm-overlay" id="adm-overlay">
 
-<!-- ══════════════════════════════════════════
-     ADMIN: DASHBOARD SCREEN
-══════════════════════════════════════════ -->
-<div id="admin-dash-screen" class="m3-screen">
-
-  <div class="adm-topbar">
-    <div class="adm-topbar-brand">
-      <div class="adm-topbar-gem">F</div>
-      M3 Payments
-    </div>
-    <div class="adm-topbar-right">
-      <div class="adm-sync">
-        <div class="adm-sync-dot" id="adm-sync-dot"></div>
-        <span id="adm-sync-lbl">—</span>
-      </div>
-      <button class="adm-btn-sm gold" onclick="admRefresh()">↻ Refresh</button>
-      <button class="adm-btn-sm" onclick="admLogout()">Sign Out</button>
+  <!-- Login panel -->
+  <div id="adm-login-panel">
+    <div class="adm-login-card">
+      <div class="adm-login-gem">F</div>
+      <div class="adm-login-title">M3 Payment Admin</div>
+      <p class="adm-login-sub">FullonBaan · Infor M3 Training<br>Payment tracking dashboard</p>
+      <input type="password" id="adm-pw" class="adm-pw-input"
+        placeholder="Admin password"
+        onkeydown="if(event.key==='Enter')admDoLogin()"
+        oninput="this.classList.remove('invalid');document.getElementById('adm-pw-err').style.display='none'">
+      <div id="adm-pw-err" class="adm-pw-err">⚠️ Incorrect password. Please try again.</div>
+      <button class="adm-login-btn" onclick="admDoLogin()">Sign In →</button>
+      <br>
+      <button class="adm-cancel-link" onclick="admClose()">Cancel</button>
     </div>
   </div>
 
-  <div class="adm-wrap">
-
-    <div class="adm-stats">
-      <div class="adm-stat">
-        <div class="adm-stat-val all" id="adm-stat-all">—</div>
-        <div class="adm-stat-lbl">Total</div>
+  <!-- Dashboard panel (hidden until login) -->
+  <div id="adm-dash-panel" style="display:none;">
+    <div class="adm-topbar">
+      <div class="adm-topbar-brand">
+        <div class="adm-topbar-gem">F</div>
+        M3 Payments
       </div>
-      <div class="adm-stat">
-        <div class="adm-stat-val init" id="adm-stat-init">—</div>
-        <div class="adm-stat-lbl">Initiated</div>
-      </div>
-      <div class="adm-stat">
-        <div class="adm-stat-val sub" id="adm-stat-sub">—</div>
-        <div class="adm-stat-lbl">Submitted</div>
+      <div class="adm-topbar-right">
+        <div class="adm-sync">
+          <div class="adm-sync-dot" id="adm-sync-dot"></div>
+          <span id="adm-sync-lbl">—</span>
+        </div>
+        <button class="adm-btn-sm gold" onclick="admRefresh()">↻ Refresh</button>
+        <button class="adm-btn-sm" onclick="admClose()">✕ Close</button>
       </div>
     </div>
-
-    <div class="adm-filter-row">
-      <button class="adm-filter-btn active"   data-f="all"       onclick="admSetFilter('all',this)">All</button>
-      <button class="adm-filter-btn blue-f"   data-f="initiated" onclick="admSetFilter('initiated',this)">Initiated</button>
-      <button class="adm-filter-btn green-f"  data-f="submitted" onclick="admSetFilter('submitted',this)">Submitted</button>
+    <div class="adm-wrap">
+      <div class="adm-stats">
+        <div class="adm-stat"><div class="adm-stat-val all" id="adm-stat-all">—</div><div class="adm-stat-lbl">Total</div></div>
+        <div class="adm-stat"><div class="adm-stat-val init" id="adm-stat-init">—</div><div class="adm-stat-lbl">Initiated</div></div>
+        <div class="adm-stat"><div class="adm-stat-val sub" id="adm-stat-sub">—</div><div class="adm-stat-lbl">Submitted</div></div>
+      </div>
+      <div class="adm-filter-row">
+        <button class="adm-filter-btn active" onclick="admSetFilter('all',this)">All</button>
+        <button class="adm-filter-btn bf"     onclick="admSetFilter('initiated',this)">Initiated</button>
+        <button class="adm-filter-btn gf"     onclick="admSetFilter('submitted',this)">Submitted</button>
+      </div>
+      <input type="text" id="adm-search" class="adm-search"
+        placeholder="Search name, email, mobile, module, order ref…"
+        oninput="admRenderCards()">
+      <div class="adm-section-hd">Payment Records</div>
+      <div id="adm-cards-list"><div class="adm-empty">⏳ Loading…</div></div>
     </div>
-
-    <input type="text" id="adm-search" class="adm-search"
-      placeholder="Search by name, email, mobile, module or order ref…"
-      oninput="admRenderCards()">
-
-    <div class="adm-section-hd">Payment Records</div>
-    <div id="adm-cards-list">
-      <div class="adm-empty"><div class="adm-empty-icon">⏳</div>Loading…</div>
-    </div>
-
   </div>
-</div>
+
+</div><!-- /.adm-overlay -->
 
 <div class="adm-toast" id="adm-toast"></div>
 
+
 <script>
 /* ══════════════════════════════════════════
-   M3 ADMIN — CONFIG
+   M3 ADMIN — CONFIG  (change password before deploying)
 ══════════════════════════════════════════ */
-var ADM_PASSWORD       = 'Admin@M3Pay2025';      // ← change before deploying
-var GH_M3_PAY_FILE     = 'payments/m3_payments.json';
-var GH_M3_PAY_API      = '/api/github?path=' + GH_M3_PAY_FILE;
+var ADM_PASSWORD   = 'Admin@M3Pay2025';
+var GH_M3_PAY_FILE = 'payments/m3_payments.json';
+var GH_M3_PAY_API  = '/api/github?path=' + GH_M3_PAY_FILE;
+var admRecords     = [];
+var admFilter      = 'all';
 
-/* ══════════════════════════════════════════
-   STATE
-══════════════════════════════════════════ */
-var admRecords   = [];
-var admFilter    = 'all';
-
-/* ══════════════════════════════════════════
-   HASH ROUTING — navigate to #admin
-══════════════════════════════════════════ */
-function admShowScreen(id) {
-  document.querySelectorAll('.m3-screen').forEach(function(s) {
-    s.classList.toggle('active', s.id === id);
-  });
-  window.scrollTo({ top: 0, behavior: 'instant' });
+/* ── Overlay open / close ── */
+function admOpenLogin() {
+  document.getElementById('adm-overlay').classList.add('open');
+  document.getElementById('adm-login-panel').style.display = 'flex';
+  document.getElementById('adm-dash-panel').style.display  = 'none';
+  setTimeout(function(){ var el=document.getElementById('adm-pw'); if(el)el.focus(); }, 80);
 }
+function admClose() {
+  document.getElementById('adm-overlay').classList.remove('open');
+}
+/* Close on ESC */
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') admClose();
+});
 
-function admHandleHash() {
-  var hash = window.location.hash;
-  if (hash === '#admin') {
-    admShowScreen('admin-login-screen');
-  } else if (hash === '#admin-dash') {
-    // only allow if already authenticated
-    if (sessionStorage.getItem('m3_adm_auth') === '1') {
-      admShowScreen('admin-dash-screen');
-      admRefresh();
-    } else {
-      window.location.hash = '#admin';
-    }
-  } else {
-    admShowScreen('main-page');
+/* ── Hash routing: fobm3training.vercel.app/#admin ── */
+function admCheckHash() {
+  if (window.location.hash === '#admin') {
+    admOpenLogin();
+    history.replaceState(null, '', window.location.pathname);
   }
 }
+admCheckHash();
+window.addEventListener('hashchange', admCheckHash);
 
-window.addEventListener('hashchange', admHandleHash);
-// DOM already ready — script is at bottom of body
-admHandleHash();
-
-/* ══════════════════════════════════════════
-   AUTH
-══════════════════════════════════════════ */
+/* ── Auth ── */
 function admDoLogin() {
   var pw = document.getElementById('adm-pw').value;
   if (pw === ADM_PASSWORD) {
     document.getElementById('adm-pw-err').style.display = 'none';
     document.getElementById('adm-pw').classList.remove('invalid');
     document.getElementById('adm-pw').value = '';
+    document.getElementById('adm-login-panel').style.display = 'none';
+    document.getElementById('adm-dash-panel').style.display  = 'block';
     sessionStorage.setItem('m3_adm_auth', '1');
-    window.location.hash = '#admin-dash';
+    admRefresh();
   } else {
     document.getElementById('adm-pw-err').style.display = 'block';
     document.getElementById('adm-pw').classList.add('invalid');
   }
 }
 
-function admLogout() {
-  sessionStorage.removeItem('m3_adm_auth');
-  window.location.hash = '';
-}
+/* ── GitHub helpers ── */
+function admGhHdr(){ return {'Content-Type':'application/json'}; }
 
-/* ══════════════════════════════════════════
-   GITHUB HELPERS
-══════════════════════════════════════════ */
-function admGhHdr() { return { 'Content-Type': 'application/json' }; }
-
-async function admGhReadPayments() {
-  var res = await fetch(GH_M3_PAY_API, { headers: admGhHdr() });
-  if (res.status === 404) return { records: [], sha: null };
-  if (!res.ok) throw new Error('GitHub read failed: ' + res.status);
+async function admGhRead() {
+  var res = await fetch(GH_M3_PAY_API, {headers: admGhHdr()});
+  if (res.status === 404) return {records:[], sha:null};
+  if (!res.ok) throw new Error('GH read ' + res.status);
   var data = await res.json();
-  var content = JSON.parse(atob(data.content.replace(/\n/g, '')));
-  return { records: content, sha: data.sha };
+  var content = JSON.parse(atob(data.content.replace(/\n/g,'')));
+  return {records: content, sha: data.sha};
 }
 
-async function admGhWritePayments(records, sha, msg) {
+async function admGhWrite(records, sha, msg) {
   var body = {
-    message: msg || ('m3pay: update ' + new Date().toISOString()),
-    content: btoa(unescape(encodeURIComponent(JSON.stringify(records, null, 2)))),
+    message: msg || 'm3pay: ' + new Date().toISOString(),
+    content: btoa(unescape(encodeURIComponent(JSON.stringify(records, null, 2))))
   };
   if (sha) body.sha = sha;
-  var res = await fetch(GH_M3_PAY_API, {
-    method: 'PUT', headers: admGhHdr(), body: JSON.stringify(body)
-  });
-  if (!res.ok) throw new Error('GitHub write failed: ' + res.status);
+  var res = await fetch(GH_M3_PAY_API, {method:'PUT', headers:admGhHdr(), body:JSON.stringify(body)});
+  if (!res.ok) throw new Error('GH write ' + res.status);
 }
 
-async function admGhUpsertPayment(record) {
+async function admGhUpsert(record) {
   try {
-    admSetSync('syncing', 'Syncing…');
-    var result = await admGhReadPayments();
-    var records = result.records, sha = result.sha;
-    var idx = records.findIndex(function(r) { return r.orderId === record.orderId; });
-    if (idx >= 0) {
-      records[idx] = Object.assign({}, records[idx], record);
-    } else {
-      records.push(record);
-    }
-    var msg = 'm3pay: ' + record.status + ' — ' + record.orderId + ' — ' + record.name;
-    await admGhWritePayments(records, sha, msg);
-    localStorage.setItem('m3_payments', JSON.stringify(records));
-    admSetSync('ok', 'Synced');
-    console.log('✅ M3 payment saved to GitHub:', record.orderId, record.status);
+    admSetSync('syncing','Syncing…');
+    var r = await admGhRead();
+    var idx = r.records.findIndex(function(x){ return x.orderId === record.orderId; });
+    if (idx >= 0) r.records[idx] = Object.assign({}, r.records[idx], record);
+    else r.records.push(record);
+    await admGhWrite(r.records, r.sha, 'm3pay:'+record.status+' '+record.orderId);
+    localStorage.setItem('m3_payments', JSON.stringify(r.records));
+    admSetSync('ok','Synced');
   } catch(e) {
-    admSetSync('err', 'Offline');
-    console.warn('GitHub m3 payment save failed:', e);
+    admSetSync('err','Offline');
+    console.warn('GH upsert failed:', e);
   }
 }
 
-async function admGhMergePayments() {
+async function admGhMerge() {
   var ghRecs = [];
   try {
-    var result = await admGhReadPayments();
-    ghRecs = result.records;
-    admSetSync('ok', 'Synced');
+    var r = await admGhRead();
+    ghRecs = r.records;
+    admSetSync('ok','Synced');
   } catch(e) {
-    admSetSync('err', 'Offline');
-    console.warn('GitHub unreachable, using localStorage:', e);
+    admSetSync('err','Offline');
   }
-  var local = JSON.parse(localStorage.getItem('m3_payments') || '[]');
+  var local = JSON.parse(localStorage.getItem('m3_payments')||'[]');
   var merged = ghRecs.slice();
-  local.forEach(function(l) {
-    if (!merged.find(function(r) { return r.orderId === l.orderId; })) {
-      merged.push(l);
-    }
+  local.forEach(function(l){
+    if (!merged.find(function(x){ return x.orderId===l.orderId; })) merged.push(l);
   });
   localStorage.setItem('m3_payments', JSON.stringify(merged));
   return merged;
 }
 
-/* ══════════════════════════════════════════
-   PUBLIC HOOKS — called from payment flow
-══════════════════════════════════════════ */
+/* ── Public payment hooks (called from payment JS) ── */
 window.m3PayInitiated = function(txnRef, userData, selDesc, selAmount) {
-  var record = {
-    orderId:     txnRef,
-    status:      'initiated',
-    name:        userData.name,
-    email:       userData.email,
-    mobile:      userData.mobile,
-    module:      selDesc,
-    amount:      selAmount,
-    initiatedAt: new Date().toISOString(),
-    submittedAt: null,
-    utr:         null,
-  };
-  var local = JSON.parse(localStorage.getItem('m3_payments') || '[]');
-  var idx   = local.findIndex(function(r) { return r.orderId === txnRef; });
-  if (idx >= 0) local[idx] = Object.assign({}, local[idx], record);
-  else local.push(record);
+  var rec = {orderId:txnRef, status:'initiated', name:userData.name, email:userData.email,
+    mobile:userData.mobile, module:selDesc, amount:selAmount,
+    initiatedAt:new Date().toISOString(), submittedAt:null, utr:null};
+  var local = JSON.parse(localStorage.getItem('m3_payments')||'[]');
+  var idx = local.findIndex(function(x){ return x.orderId===txnRef; });
+  if (idx>=0) local[idx]=Object.assign({},local[idx],rec); else local.push(rec);
   localStorage.setItem('m3_payments', JSON.stringify(local));
-  admGhUpsertPayment(record);
+  admGhUpsert(rec);
 };
 
 window.m3PaySubmitted = function(txnRef, utrNumber) {
-  var local = JSON.parse(localStorage.getItem('m3_payments') || '[]');
-  var idx   = local.findIndex(function(r) { return r.orderId === txnRef; });
-  var updates = {
-    status:      'submitted',
-    utr:         utrNumber,
-    submittedAt: new Date().toISOString(),
-  };
-  if (idx >= 0) {
-    local[idx] = Object.assign({}, local[idx], updates);
+  var local = JSON.parse(localStorage.getItem('m3_payments')||'[]');
+  var idx = local.findIndex(function(x){ return x.orderId===txnRef; });
+  var upd = {status:'submitted', utr:utrNumber, submittedAt:new Date().toISOString()};
+  if (idx>=0) {
+    local[idx]=Object.assign({},local[idx],upd);
     localStorage.setItem('m3_payments', JSON.stringify(local));
-    admGhUpsertPayment(local[idx]);
+    admGhUpsert(local[idx]);
   } else {
-    admGhUpsertPayment(Object.assign({ orderId: txnRef, name:'—', email:'—', mobile:'—', module:'—', amount:0, initiatedAt:null }, updates));
+    admGhUpsert(Object.assign({orderId:txnRef,name:'—',email:'—',mobile:'—',module:'—',amount:0,initiatedAt:null},upd));
   }
 };
 
-/* ══════════════════════════════════════════
-   DASHBOARD
-══════════════════════════════════════════ */
+/* ── Dashboard ── */
 async function admRefresh() {
-  admSetSync('syncing', 'Syncing…');
   var list = document.getElementById('adm-cards-list');
-  if (list) list.innerHTML = '<div class="adm-empty">⏳ Fetching from GitHub…</div>';
+  if (list) list.innerHTML = '<div class="adm-empty">⏳ Syncing with GitHub…</div>';
+  admSetSync('syncing','Syncing…');
   try {
-    admRecords = await admGhMergePayments();
+    admRecords = await admGhMerge();
   } catch(e) {
-    admSetSync('err', 'Offline');
-    admRecords = JSON.parse(localStorage.getItem('m3_payments') || '[]');
+    admRecords = JSON.parse(localStorage.getItem('m3_payments')||'[]');
+    admSetSync('err','Offline');
   }
   admUpdateStats();
   admRenderCards();
 }
 
 function admUpdateStats() {
-  var init = admRecords.filter(function(r){ return r.status === 'initiated'; }).length;
-  var sub  = admRecords.filter(function(r){ return r.status === 'submitted'; }).length;
-  var sa = document.getElementById('adm-stat-all');
-  var si = document.getElementById('adm-stat-init');
-  var ss = document.getElementById('adm-stat-sub');
-  if (sa) sa.textContent = admRecords.length;
-  if (si) si.textContent = init;
-  if (ss) ss.textContent = sub;
+  var init = admRecords.filter(function(r){return r.status==='initiated';}).length;
+  var sub  = admRecords.filter(function(r){return r.status==='submitted';}).length;
+  ['adm-stat-all','adm-stat-init','adm-stat-sub'].forEach(function(id,i){
+    var el = document.getElementById(id);
+    if (el) el.textContent = [admRecords.length, init, sub][i];
+  });
 }
 
 function admSetFilter(f, btn) {
   admFilter = f;
-  document.querySelectorAll('.adm-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelectorAll('.adm-filter-btn').forEach(function(b){ b.classList.remove('active'); });
   btn.classList.add('active');
   admRenderCards();
 }
 
 function admRenderCards() {
-  var q    = (document.getElementById('adm-search') ? document.getElementById('adm-search').value : '').toLowerCase();
+  var q    = ((document.getElementById('adm-search')||{}).value||'').toLowerCase();
   var list = document.getElementById('adm-cards-list');
   if (!list) return;
-
-  var recs = admRecords;
-  if (admFilter !== 'all') recs = recs.filter(function(r){ return r.status === admFilter; });
-
-  if (q) {
-    recs = recs.filter(function(r) {
-      return (r.name||'').toLowerCase().includes(q)
-          || (r.email||'').toLowerCase().includes(q)
-          || (r.mobile||'').toLowerCase().includes(q)
-          || (r.module||'').toLowerCase().includes(q)
-          || (r.orderId||'').toLowerCase().includes(q)
-          || (r.utr||'').toLowerCase().includes(q);
+  var recs = admFilter==='all' ? admRecords : admRecords.filter(function(r){return r.status===admFilter;});
+  if (q) recs = recs.filter(function(r){
+    return ['name','email','mobile','module','orderId','utr'].some(function(k){
+      return (r[k]||'').toLowerCase().includes(q);
     });
-  }
-
-  // Sort: submitted first, then by date desc
-  recs = recs.slice().sort(function(a, b) {
-    if (a.status !== b.status) return a.status === 'submitted' ? -1 : 1;
-    var da = new Date(b.submittedAt || b.initiatedAt || 0);
-    var db = new Date(a.submittedAt || a.initiatedAt || 0);
-    return da - db;
   });
-
+  recs = recs.slice().sort(function(a,b){
+    if (a.status!==b.status) return a.status==='submitted'?-1:1;
+    return new Date(b.submittedAt||b.initiatedAt||0)-new Date(a.submittedAt||a.initiatedAt||0);
+  });
   if (!recs.length) {
-    var icon = admFilter === 'initiated' ? '💳' : admFilter === 'submitted' ? '✅' : '📋';
-    list.innerHTML = '<div class="adm-empty"><div class="adm-empty-icon">' + icon + '</div>No records found' + (q ? ' matching "' + admEscHtml(q) + '"' : '') + '.</div>';
+    list.innerHTML='<div class="adm-empty">No records found'+(q?' for "'+admEH(q)+'"':'')+'.</div>';
     return;
   }
-
-  list.innerHTML = recs.map(function(r) { return admBuildCard(r); }).join('');
+  list.innerHTML = recs.map(admBuildCard).join('');
 }
 
 function admBuildCard(r) {
-  var isSub  = r.status === 'submitted';
-  var badge  = isSub ? '<span class="adm-status-badge adm-badge-sub">✅ Submitted</span>'
-                      : '<span class="adm-status-badge adm-badge-init">💳 Initiated</span>';
-
-  function fmtTime(iso) {
-    if (!iso) return '—';
-    return new Date(iso).toLocaleString('en-IN', {
-      timeZone:'Asia/Kolkata', day:'2-digit', month:'short',
-      year:'numeric', hour:'2-digit', minute:'2-digit'
-    });
-  }
-
-  var initT = fmtTime(r.initiatedAt);
-  var subT  = fmtTime(r.submittedAt);
-
-  var actions = '';
-  if (r.email)  actions += '<button class="adm-copy-btn" onclick="admCopy('' + admEscAttr(r.email)  + '','Email')">📧 Email</button>';
-  if (r.utr)    actions += '<button class="adm-copy-btn" onclick="admCopy('' + admEscAttr(r.utr)    + '','UTR')">🔑 UTR</button>';
-  if (r.mobile) actions += '<button class="adm-copy-btn" onclick="admCopy('+91' + admEscAttr(r.mobile) + '','Mobile')">📱 Mobile</button>';
-  actions += '<button class="adm-copy-btn" onclick="admCopy('' + admEscAttr(r.orderId) + '','Order Ref')">📋 Ref</button>';
-
+  var isSub = r.status==='submitted';
+  function ft(iso){ return iso?new Date(iso).toLocaleString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}):'—'; }
+  var acts = '';
+  if(r.email)  acts+='<button class="adm-copy-btn" onclick="admCopy(''+admEA(r.email)+'','Email')">📧 Email</button>';
+  if(r.utr)    acts+='<button class="adm-copy-btn" onclick="admCopy(''+admEA(r.utr)+'','UTR')">🔑 UTR</button>';
+  if(r.mobile) acts+='<button class="adm-copy-btn" onclick="admCopy('+91'+admEA(r.mobile)+'','Mobile')">📱 Mobile</button>';
+  acts+='<button class="adm-copy-btn" onclick="admCopy(''+admEA(r.orderId)+'','Ref')">📋 Ref</button>';
   return '<div class="adm-card">'
-    + '<div class="adm-card-top">'
-    +   '<div><div class="adm-card-name">' + admEscHtml(r.name||'—') + '</div>'
-    +   '<div class="adm-card-email">' + admEscHtml(r.email||'—') + (r.mobile ? ' · +91 ' + admEscHtml(r.mobile) : '') + '</div></div>'
-    +   badge
-    + '</div>'
-    + '<div class="adm-meta-grid">'
-    +   '<div class="adm-meta-item"><div class="adm-meta-val">' + admEscHtml(r.module||'—') + '</div><div class="adm-meta-key">Module</div></div>'
-    +   '<div class="adm-meta-item"><div class="adm-meta-val">' + (r.amount ? '₹' + Number(r.amount).toLocaleString('en-IN') : '—') + '</div><div class="adm-meta-key">Amount</div></div>'
-    +   '<div class="adm-meta-item"><div class="adm-meta-val">' + admEscHtml(r.orderId||'—') + '</div><div class="adm-meta-key">Order Ref</div></div>'
-    +   '<div class="adm-meta-item"><div class="adm-meta-val">' + (r.utr ? admEscHtml(r.utr) : '<span style="color:#6e6b65">Not yet</span>') + '</div><div class="adm-meta-key">UTR / Txn Ref</div></div>'
-    + '</div>'
-    + '<div class="adm-timeline">'
-    +   '<div class="adm-tl-row"><div class="adm-tl-dot blue"></div><div class="adm-tl-lbl">Initiated</div><div class="adm-tl-val">' + initT + '</div></div>'
-    +   '<div class="adm-tl-row"><div class="adm-tl-dot ' + (isSub ? 'green' : 'grey') + '"></div><div class="adm-tl-lbl">Submitted</div><div class="adm-tl-val">' + (isSub ? subT : '<span style="color:#6e6b65">Awaiting…</span>') + '</div></div>'
-    + '</div>'
-    + '<div class="adm-card-actions">' + actions + '</div>'
-    + '</div>';
+    +'<div class="adm-card-top"><div>'
+    +'<div class="adm-card-name">'+admEH(r.name||'—')+'</div>'
+    +'<div class="adm-card-email">'+admEH(r.email||'—')+(r.mobile?' · +91 '+admEH(r.mobile):'')+'</div>'
+    +'</div><span class="adm-badge '+(isSub?'sub':'init')+'">'+(isSub?'✅ Submitted':'💳 Initiated')+'</span></div>'
+    +'<div class="adm-meta">'
+    +'<div class="adm-meta-item"><div class="adm-meta-val">'+admEH(r.module||'—')+'</div><div class="adm-meta-key">Module</div></div>'
+    +'<div class="adm-meta-item"><div class="adm-meta-val">'+(r.amount?'₹'+Number(r.amount).toLocaleString('en-IN'):'—')+'</div><div class="adm-meta-key">Amount</div></div>'
+    +'<div class="adm-meta-item"><div class="adm-meta-val">'+admEH(r.orderId||'—')+'</div><div class="adm-meta-key">Order Ref</div></div>'
+    +'<div class="adm-meta-item"><div class="adm-meta-val">'+(r.utr?admEH(r.utr):'<span style="color:#6e6b65">Not yet</span>')+'</div><div class="adm-meta-key">UTR / Txn Ref</div></div>'
+    +'</div>'
+    +'<div class="adm-timeline">'
+    +'<div class="adm-tl-row"><div class="adm-tl-dot blue"></div><div class="adm-tl-lbl">Initiated</div><div class="adm-tl-val">'+ft(r.initiatedAt)+'</div></div>'
+    +'<div class="adm-tl-row"><div class="adm-tl-dot '+(isSub?'green':'grey')+'"></div><div class="adm-tl-lbl">Submitted</div><div class="adm-tl-val">'+(isSub?ft(r.submittedAt):'<span style="color:#6e6b65">Awaiting…</span>')+'</div></div>'
+    +'</div>'
+    +'<div class="adm-card-actions">'+acts+'</div>'
+    +'</div>';
 }
 
-/* ══════════════════════════════════════════
-   HELPERS
-══════════════════════════════════════════ */
+/* ── Helpers ── */
 function admSetSync(state, label) {
-  var dot = document.getElementById('adm-sync-dot');
-  var lbl = document.getElementById('adm-sync-lbl');
-  if (dot) dot.className = 'adm-sync-dot ' + state;
-  if (lbl && label) lbl.textContent = label;
+  var dot=document.getElementById('adm-sync-dot'), lbl=document.getElementById('adm-sync-lbl');
+  if(dot) dot.className='adm-sync-dot '+state;
+  if(lbl&&label) lbl.textContent=label;
 }
-
-function admCopy(text, label) {
+function admCopy(text,label){
   navigator.clipboard.writeText(text)
-    .then(function()  { admToast('📋  Copied ' + label + ': ' + text); })
-    .catch(function() { admToast('📋  ' + label + ': ' + text + ' (copy manually)'); });
+    .then(function(){ admToast('📋 Copied '+label+': '+text); })
+    .catch(function(){ admToast('📋 '+label+': '+text+' (copy manually)'); });
 }
+var _admToastT;
+function admToast(msg){
+  var el=document.getElementById('adm-toast');if(!el)return;
+  el.textContent=msg;el.classList.add('show');
+  clearTimeout(_admToastT);_admToastT=setTimeout(function(){el.classList.remove('show');},3000);
+}
+function admEH(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function admEA(s){ return String(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'\\"'); }
 
-var admToastTimer;
-function admToast(msg) {
-  var el = document.getElementById('adm-toast');
-  if (!el) return;
-  el.textContent = msg;
-  el.classList.add('show');
-  clearTimeout(admToastTimer);
-  admToastTimer = setTimeout(function() { el.classList.remove('show'); }, 3000);
-}
-
-function admEscHtml(s) {
-  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-function admEscAttr(s) {
-  return String(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'\\"');
-}
-
-/* Pre-populate from localStorage immediately on page load */
-(function() {
-  var local = JSON.parse(localStorage.getItem('m3_payments') || '[]');
-  if (local.length) { admRecords = local; admUpdateStats(); }
+/* Pre-populate stats from localStorage immediately */
+(function(){
+  var local=JSON.parse(localStorage.getItem('m3_payments')||'[]');
+  if(local.length){admRecords=local;admUpdateStats();}
 })();
 </script>
 
