@@ -1906,10 +1906,10 @@ function admClose() {
 }
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') admClose(); });
 
-// #admin hash support
+// #admin hash support + /admin path support
 (function(){
-  if(window.location.hash === '#admin'){
-    history.replaceState(null,'',window.location.pathname);
+  if(window.location.hash === '#admin' || window.location.pathname === '/admin'){
+    history.replaceState(null,'','/');
     admOpen();
   }
 })();
