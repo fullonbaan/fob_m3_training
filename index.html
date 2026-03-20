@@ -686,9 +686,9 @@
   }
 
   /* ══ SCREEN / ADMIN SYSTEM ══ */
-  .m3-screen { display: none; }
-  .m3-screen.active { display: block; }
-  #main-page.m3-screen.active { display: block; }
+  .m3-screen { display: none !important; }
+  .m3-screen.active { display: block !important; }
+  #main-page.m3-screen.active { display: block !important; }
 
   /* Admin login */
   #admin-login-screen {
@@ -1261,11 +1261,11 @@
             <div class="ci-val">+91 63605 93122</div>
           </div>
         </a>
-        <a class="ci" href="mailto:fullonbaan@gmail.com?subject=Infor%20M3%20Training%20Materials%20Enquiry&body=Hi%20FullonBaan%2C%20I%20am%20interested%20in%20the%20Infor%20M3%20Training%20Materials.%20Please%20share%20more%20details.">
+        <a class="ci" href="/cdn-cgi/l/email-protection#294f5c454546474b484847694e44484045074a4644165a5c4b434c4a5d1460474f465b0c1b19641a0c1b197d5b48404740474e0c1b1964485d4c5b4048455a0c1b196c47585c405b500f4b464d501461400c1b196f5c454546476b4848470c1b6a0c1b19600c1b1948440c1b1940475d4c5b4c5a5d4c4d0c1b1940470c1b195d414c0c1b1960474f465b0c1b19641a0c1b197d5b48404740474e0c1b1964485d4c5b4048455a070c1b1979454c485a4c0c1b195a41485b4c0c1b1944465b4c0c1b194d4c5d4840455a07">
           <span class="ci-icon">✉️</span>
           <div>
             <div class="ci-label">Email</div>
-            <div class="ci-val">fullonbaan@gmail.com</div>
+            <div class="ci-val"><span class="__cf_email__" data-cfemail="0c6a79606063626e6d6d624c6b616d6560226f6361">[email&#160;protected]</span></div>
           </div>
         </a>
         <a class="ci" href="https://www.fullonbaan.com" target="_blank" rel="noopener">
@@ -1567,11 +1567,11 @@
         Instagram
       </a>
     </div>
-    <div class="footer-copy">© 2025 FullonBaan IT Solutions · Bangalore, India · fullonbaan@gmail.com · +91 63605 93122</div>
+    <div class="footer-copy">© 2025 FullonBaan IT Solutions · Bangalore, India · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="187e6d747477767a797976587f75797174367b7775">[email&#160;protected]</a> · +91 63605 93122</div>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ═══════════════════════════════════════════════════════════════
   //  EMAILJS CREDENTIALS
   // ═══════════════════════════════════════════════════════════════
@@ -2016,7 +2016,8 @@ function admHandleHash() {
 }
 
 window.addEventListener('hashchange', admHandleHash);
-window.addEventListener('DOMContentLoaded', admHandleHash);
+// DOM already ready — script is at bottom of body
+admHandleHash();
 
 /* ══════════════════════════════════════════
    AUTH
