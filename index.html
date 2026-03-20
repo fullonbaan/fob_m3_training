@@ -689,207 +689,181 @@
 
 
 
-  /* ══ ADMIN OVERLAY ══ */
-  .adm-trigger {
-    position: fixed; bottom: 22px; right: 22px; z-index: 9000;
-    width: 36px; height: 36px; border-radius: 10px;
-    background: rgba(13,13,13,.72); border: 1px solid rgba(255,255,255,.10);
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer; font-size: 15px; color: rgba(255,255,255,.25);
-    backdrop-filter: blur(8px);
-    transition: color .2s, border-color .2s, background .2s;
-    text-decoration: none;
-  }
-  .adm-trigger:hover {
-    color: #c9943e; border-color: rgba(201,148,62,.4);
-    background: rgba(13,13,13,.92);
-  }
 
-  /* Full-screen overlay */
-  .adm-overlay {
-    display: none !important;
-    position: fixed; inset: 0; z-index: 9100;
+  /* ══ M3 ADMIN ══ */
+  #adm-overlay {
+    display: none;
+    position: fixed; top:0; left:0; right:0; bottom:0;
+    z-index: 9999;
+    background: #0d0d0d;
     overflow-y: auto;
   }
-  .adm-overlay.open { display: block !important; }
+  #adm-overlay.open { display: block; }
 
-  /* Login panel */
-  #adm-login-panel {
-    min-height: 100vh;
-    background: #0d0d0d;
-    background-image: radial-gradient(ellipse at 50% 0%, rgba(201,148,62,.07) 0%, transparent 65%);
-    display: none; align-items: center; justify-content: center;
-    padding: 40px 20px;
+  #adm-trigger {
+    position: fixed; bottom: 22px; right: 22px;
+    width: 38px; height: 38px; border-radius: 10px;
+    background: rgba(20,20,20,.9);
+    border: 1px solid rgba(201,148,62,.35);
+    cursor: pointer; font-size: 16px; color: #c9943e;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 9998; box-shadow: 0 2px 12px rgba(0,0,0,.4);
+    transition: background .2s;
   }
-  #adm-login-panel.visible { display: flex; }
-  .adm-login-card {
+  #adm-trigger:hover { background: rgba(40,30,10,.95); }
+
+  /* Login */
+  #adm-login {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 40px 20px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(201,148,62,.07) 0%, transparent 65%);
+  }
+  #adm-login.hidden { display: none; }
+  .alc {
     background: #161616; border: 1px solid rgba(255,255,255,.12);
     border-radius: 20px; padding: 44px 36px;
-    width: 100%; max-width: 390px;
-    text-align: center; box-shadow: 0 32px 80px rgba(0,0,0,.7);
+    width: 100%; max-width: 380px; text-align: center;
+    box-shadow: 0 32px 80px rgba(0,0,0,.7);
+    color: #f0ece4; font-family: 'DM Sans', sans-serif;
   }
-  .adm-login-gem {
-    width: 52px; height: 52px; border-radius: 13px;
+  .alc-gem {
+    width: 50px; height: 50px; border-radius: 13px;
     background: linear-gradient(135deg,#1a1200,#2e2000);
-    border: 1px solid rgba(201,148,62,.35);
+    border: 1px solid rgba(201,148,62,.4);
     display: flex; align-items: center; justify-content: center;
     font-family: 'Noto Serif', serif; font-size: 20px; color: #e8b86d;
     margin: 0 auto 18px;
-    box-shadow: 0 0 24px rgba(201,148,62,.14);
   }
-  .adm-login-title {
-    font-family: 'Noto Serif', serif;
-    font-size: 20px; color: #e8b86d; margin-bottom: 6px;
-  }
-  .adm-login-sub { font-size: 13px; color: #6e6b65; margin-bottom: 24px; line-height: 1.5; }
-  .adm-pw-input {
-    width: 100%; padding: 12px 16px;
-    background: #1e1e1e; border: 1.5px solid rgba(255,255,255,.12);
+  .alc h2 { font-family: 'Noto Serif', serif; font-size: 20px; color: #e8b86d; margin-bottom: 6px; }
+  .alc p  { font-size: 13px; color: #6e6b65; margin-bottom: 22px; line-height: 1.5; }
+  .alc input {
+    width: 100%; padding: 12px 16px; margin-bottom: 10px;
+    background: #1e1e1e; border: 1.5px solid rgba(255,255,255,.14);
     border-radius: 10px; color: #f0ece4; font-size: 14px;
-    font-family: 'DM Sans', sans-serif; margin-bottom: 10px;
-    transition: border-color .2s;
-  }
-  .adm-pw-input:focus { outline: none; border-color: #c9943e; }
-  .adm-pw-input.invalid { border-color: #e05252; }
-  .adm-pw-err { font-size: 12px; color: #e05252; margin-bottom: 10px; display: none; text-align: left; }
-  .adm-login-btn {
-    width: 100%; padding: 12px;
-    background: linear-gradient(135deg,#7a5a1a,#a87830);
-    border: 1px solid rgba(201,148,62,.35); border-radius: 10px;
-    color: #e8b86d; font-size: 14px; font-weight: 600;
-    font-family: 'DM Sans', sans-serif; cursor: pointer;
-    transition: opacity .2s, transform .15s; margin-bottom: 10px;
-  }
-  .adm-login-btn:hover { opacity: .9; transform: translateY(-1px); }
-  .adm-cancel-link {
-    font-size: 12px; color: #6e6b65; cursor: pointer;
-    background: none; border: none; font-family: 'DM Sans', sans-serif;
-  }
-  .adm-cancel-link:hover { color: #9a9590; }
-
-  /* Dashboard panel */
-  #adm-dash-panel {
-    min-height: 100vh; background: #0d0d0d; color: #f0ece4;
     font-family: 'DM Sans', sans-serif;
   }
-  .adm-topbar {
-    position: sticky; top: 0; z-index: 200;
-    background: rgba(13,13,13,.95); backdrop-filter: blur(12px);
+  .alc input:focus { outline: none; border-color: #c9943e; }
+  .alc input.bad  { border-color: #e05252; }
+  .alc-err { font-size: 12px; color: #e05252; display: none; margin-bottom: 10px; text-align: left; }
+  .alc-btn {
+    width: 100%; padding: 12px; margin-bottom: 10px;
+    background: linear-gradient(135deg,#7a5a1a,#a87830);
+    border: 1px solid rgba(201,148,62,.4); border-radius: 10px;
+    color: #e8b86d; font-size: 14px; font-weight: 600;
+    font-family: 'DM Sans', sans-serif; cursor: pointer;
+  }
+  .alc-btn:hover { opacity: .88; }
+  .alc-cancel {
+    background: none; border: none; color: #6e6b65;
+    font-size: 12px; cursor: pointer; font-family: 'DM Sans', sans-serif;
+  }
+  .alc-cancel:hover { color: #9a9590; }
+
+  /* Dashboard */
+  #adm-dash { display: none; min-height: 100vh; }
+  #adm-dash.visible { display: block; }
+  .atb {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(13,13,13,.96); backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255,255,255,.08);
-    padding: 0 24px; height: 54px;
+    padding: 0 22px; height: 52px;
     display: flex; align-items: center; justify-content: space-between;
+    font-family: 'DM Sans', sans-serif;
   }
-  .adm-topbar-brand {
-    font-family: 'Noto Serif', serif; font-size: 15px; color: #e8b86d;
-    display: flex; align-items: center; gap: 9px;
-  }
-  .adm-topbar-gem {
-    width: 27px; height: 27px; border-radius: 7px;
-    background: linear-gradient(135deg,#1a1200,#2e2000);
-    border: 1px solid rgba(201,148,62,.35);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Noto Serif', serif; font-size: 11px; color: #e8b86d;
-  }
-  .adm-topbar-right { display: flex; gap: 8px; align-items: center; }
-  .adm-sync { font-size: 11px; color: #6e6b65; font-family: 'DM Mono', monospace; display: flex; align-items: center; gap: 5px; }
-  .adm-sync-dot { width: 6px; height: 6px; border-radius: 50%; background: #6e6b65; transition: background .3s; }
-  .adm-sync-dot.ok     { background: #00c878; }
-  .adm-sync-dot.err    { background: #e05252; }
-  .adm-sync-dot.syncing{ background: #f5a623; animation: adm-pulse .9s infinite; }
-  @keyframes adm-pulse { 0%,100%{opacity:1}50%{opacity:.35} }
-  .adm-btn-sm {
+  .atb-brand { font-family: 'Noto Serif', serif; font-size: 15px; color: #e8b86d; }
+  .atb-right { display: flex; gap: 8px; align-items: center; }
+  .ab {
     padding: 6px 13px; border-radius: 7px;
     border: 1px solid rgba(255,255,255,.12);
     background: #1e1e1e; color: #f0ece4;
     font-size: 12px; font-family: 'DM Sans', sans-serif; cursor: pointer;
-    transition: background .18s;
   }
-  .adm-btn-sm:hover { background: #252525; }
-  .adm-btn-sm.gold { border-color: rgba(201,148,62,.35); color: #e8b86d; }
-  .adm-btn-sm.gold:hover { background: rgba(201,148,62,.12); }
-
-  .adm-wrap { max-width: 940px; margin: 0 auto; padding: 28px 24px 80px; }
-  .adm-stats { display: grid; grid-template-columns: repeat(auto-fit,minmax(120px,1fr)); gap: 10px; margin-bottom: 22px; }
-  .adm-stat { background: #161616; border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 14px 18px; }
-  .adm-stat-val { font-size: 28px; font-weight: 700; line-height: 1; }
-  .adm-stat-val.all  { color: #f0ece4; }
-  .adm-stat-val.init { color: #5b8def; }
-  .adm-stat-val.sub  { color: #00c878; }
-  .adm-stat-lbl { font-size: 10px; color: #6e6b65; text-transform: uppercase; letter-spacing: .06em; margin-top: 3px; }
-  .adm-filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
-  .adm-filter-btn {
+  .ab:hover { background: #2a2a2a; }
+  .ab.gold { border-color: rgba(201,148,62,.4); color: #e8b86d; }
+  .ab.gold:hover { background: rgba(201,148,62,.1); }
+  .async { font-size: 11px; color: #6e6b65; font-family: 'DM Mono', monospace; display: flex; align-items: center; gap: 5px; }
+  .asyncdot { width: 6px; height: 6px; border-radius: 50%; background: #6e6b65; }
+  .asyncdot.ok { background: #00c878; }
+  .asyncdot.err { background: #e05252; }
+  .asyncdot.spin { background: #f5a623; animation: asyncpulse .9s infinite; }
+  @keyframes asyncpulse { 0%,100%{opacity:1}50%{opacity:.3} }
+  .awrap { max-width: 900px; margin: 0 auto; padding: 26px 22px 80px; }
+  .astats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 20px; }
+  .astat { background: #161616; border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 14px 18px; }
+  .astat-v { font-size: 28px; font-weight: 700; color: #f0ece4; }
+  .astat-v.i { color: #5b8def; }
+  .astat-v.s { color: #00c878; }
+  .astat-l { font-size: 10px; color: #6e6b65; text-transform: uppercase; letter-spacing: .06em; margin-top: 3px; }
+  .afrow { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 13px; }
+  .afbtn {
     padding: 5px 14px; border-radius: 20px;
-    border: 1px solid rgba(255,255,255,.08); background: #161616;
-    color: #9a9590; font-size: 12px; font-family: 'DM Sans', sans-serif;
-    cursor: pointer; transition: all .18s;
+    border: 1px solid rgba(255,255,255,.09); background: #161616;
+    color: #9a9590; font-size: 12px; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
   }
-  .adm-filter-btn:hover { border-color: rgba(255,255,255,.16); color: #f0ece4; }
-  .adm-filter-btn.active { background: rgba(201,148,62,.14); border-color: rgba(201,148,62,.35); color: #e8b86d; }
-  .adm-filter-btn.active.bf { background: rgba(91,141,239,.12); border-color: rgba(91,141,239,.3); color: #5b8def; }
-  .adm-filter-btn.active.gf { background: rgba(0,200,120,.10); border-color: rgba(0,200,120,.28); color: #00c878; }
-  .adm-search {
-    width: 100%; padding: 10px 16px; margin-bottom: 16px;
-    background: #161616; border: 1.5px solid rgba(255,255,255,.08);
+  .afbtn:hover { color: #f0ece4; }
+  .afbtn.on { background: rgba(201,148,62,.14); border-color: rgba(201,148,62,.4); color: #e8b86d; }
+  .afbtn.on.bf { background: rgba(91,141,239,.12); border-color: rgba(91,141,239,.3); color: #5b8def; }
+  .afbtn.on.gf { background: rgba(0,200,120,.10); border-color: rgba(0,200,120,.28); color: #00c878; }
+  .asrch {
+    width: 100%; padding: 10px 15px; margin-bottom: 14px;
+    background: #161616; border: 1.5px solid rgba(255,255,255,.09);
     border-radius: 10px; color: #f0ece4; font-size: 13px;
     font-family: 'DM Sans', sans-serif;
   }
-  .adm-search:focus { outline: none; border-color: #c9943e; }
-  .adm-search::placeholder { color: #6e6b65; }
-  .adm-section-hd {
+  .asrch:focus { outline: none; border-color: #c9943e; }
+  .asrch::placeholder { color: #6e6b65; }
+  .ahd {
     font-size: 10px; color: #c9943e; letter-spacing: .12em; text-transform: uppercase;
     margin-bottom: 12px; display: flex; align-items: center; gap: 10px;
     font-family: 'DM Mono', monospace;
   }
-  .adm-section-hd::after { content:''; flex:1; height:1px; background: rgba(255,255,255,.07); }
-  .adm-empty { padding: 40px; text-align: center; color: #6e6b65; font-size: 14px; }
-  .adm-card {
+  .ahd::after { content:''; flex:1; height:1px; background: rgba(255,255,255,.07); }
+  .aempty { padding: 40px; text-align: center; color: #6e6b65; font-size: 14px; }
+  .acard {
     background: #161616; border: 1px solid rgba(255,255,255,.08);
-    border-radius: 13px; padding: 18px 20px; margin-bottom: 10px;
-    transition: border-color .2s;
-  }
-  .adm-card:hover { border-color: rgba(255,255,255,.14); }
-  .adm-card-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px; margin-bottom: 13px; }
-  .adm-card-name { font-size: 15px; font-weight: 700; color: #f0ece4; }
-  .adm-card-email { font-size: 12px; color: #9a9590; margin-top: 2px; }
-  .adm-badge { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }
-  .adm-badge.init { background: rgba(91,141,239,.12); border: 1px solid rgba(91,141,239,.3); color: #5b8def; }
-  .adm-badge.sub  { background: rgba(0,200,120,.10);  border: 1px solid rgba(0,200,120,.28); color: #00c878; }
-  .adm-meta { display: grid; grid-template-columns: repeat(auto-fill,minmax(155px,1fr)); gap: 7px; margin-bottom: 13px; }
-  .adm-meta-item { background: #1e1e1e; border: 1px solid rgba(255,255,255,.07); border-radius: 8px; padding: 7px 11px; }
-  .adm-meta-val { font-size: 12px; font-weight: 600; color: #f0ece4; word-break: break-all; }
-  .adm-meta-key { font-size: 10px; color: #6e6b65; margin-top: 2px; text-transform: uppercase; letter-spacing: .05em; }
-  .adm-timeline { border-top: 1px solid rgba(255,255,255,.07); padding-top: 11px; display: flex; flex-direction: column; gap: 5px; }
-  .adm-tl-row { display: flex; align-items: center; gap: 9px; font-size: 12px; }
-  .adm-tl-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-  .adm-tl-dot.blue  { background: #5b8def; }
-  .adm-tl-dot.green { background: #00c878; }
-  .adm-tl-dot.grey  { background: #6e6b65; }
-  .adm-tl-lbl { color: #9a9590; min-width: 85px; }
-  .adm-tl-val { color: #f0ece4; font-family: 'DM Mono', monospace; font-size: 11px; }
-  .adm-card-actions { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 11px; border-top: 1px solid rgba(255,255,255,.07); padding-top: 11px; }
-  .adm-copy-btn {
-    padding: 5px 11px; border-radius: 7px;
-    border: 1px solid rgba(255,255,255,.10); background: #1e1e1e;
-    color: #9a9590; font-size: 11px; cursor: pointer;
-    font-family: 'DM Mono', monospace; transition: all .18s;
-  }
-  .adm-copy-btn:hover { border-color: rgba(201,148,62,.35); color: #e8b86d; }
-  .adm-toast {
-    position: fixed; bottom: 24px; left: 50%;
-    transform: translateX(-50%) translateY(16px);
-    background: #252525; border: 1px solid rgba(255,255,255,.14);
-    border-radius: 10px; padding: 9px 18px;
-    font-size: 13px; color: #f0ece4; box-shadow: 0 8px 32px rgba(0,0,0,.5);
-    opacity: 0; transition: opacity .22s, transform .22s;
-    pointer-events: none; z-index: 9999; white-space: nowrap;
+    border-radius: 13px; padding: 17px 20px; margin-bottom: 10px;
     font-family: 'DM Sans', sans-serif;
   }
-  .adm-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-  @media(max-width:600px){
-    .adm-topbar { padding: 0 14px; }
-    .adm-wrap { padding: 20px 14px 70px; }
-    .adm-meta { grid-template-columns: 1fr 1fr; }
+  .acard:hover { border-color: rgba(255,255,255,.15); }
+  .acard-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .acard-name { font-size: 15px; font-weight: 700; color: #f0ece4; }
+  .acard-email { font-size: 12px; color: #9a9590; margin-top: 2px; }
+  .abadge { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+  .abadge.i { background: rgba(91,141,239,.12); border: 1px solid rgba(91,141,239,.3); color: #5b8def; }
+  .abadge.s { background: rgba(0,200,120,.10); border: 1px solid rgba(0,200,120,.28); color: #00c878; }
+  .ameta { display: grid; grid-template-columns: repeat(auto-fill,minmax(150px,1fr)); gap: 7px; margin-bottom: 12px; }
+  .ami { background: #1e1e1e; border: 1px solid rgba(255,255,255,.07); border-radius: 8px; padding: 7px 11px; }
+  .ami-v { font-size: 12px; font-weight: 600; color: #f0ece4; word-break: break-all; }
+  .ami-k { font-size: 10px; color: #6e6b65; margin-top: 2px; text-transform: uppercase; letter-spacing: .05em; }
+  .atl { border-top: 1px solid rgba(255,255,255,.07); padding-top: 10px; display: flex; flex-direction: column; gap: 5px; }
+  .atlr { display: flex; align-items: center; gap: 8px; font-size: 11px; }
+  .atld { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .atld.b { background: #5b8def; }
+  .atld.g { background: #00c878; }
+  .atld.x { background: #6e6b65; }
+  .atll { color: #9a9590; min-width: 80px; }
+  .atlv { color: #f0ece4; font-family: 'DM Mono', monospace; }
+  .aacts { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 10px; border-top: 1px solid rgba(255,255,255,.07); padding-top: 10px; }
+  .acopy {
+    padding: 4px 10px; border-radius: 7px;
+    border: 1px solid rgba(255,255,255,.1); background: #1e1e1e;
+    color: #9a9590; font-size: 11px; cursor: pointer;
+    font-family: 'DM Mono', monospace;
   }
+  .acopy:hover { border-color: rgba(201,148,62,.4); color: #e8b86d; }
+  #adm-toast {
+    position: fixed; bottom: 22px; left: 50%;
+    transform: translateX(-50%) translateY(14px);
+    background: #222; border: 1px solid rgba(255,255,255,.15);
+    border-radius: 10px; padding: 9px 18px;
+    font-size: 13px; color: #f0ece4;
+    opacity: 0; transition: opacity .22s, transform .22s;
+    pointer-events: none; z-index: 99999;
+    font-family: 'DM Sans', sans-serif; white-space: nowrap;
+  }
+  #adm-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
 </style>
 </head>
@@ -1861,311 +1835,242 @@
 </script>
 
 
-<!-- ══ ADMIN TRIGGER ICON (fixed bottom-right) ══ -->
-<button class="adm-trigger" title="Admin" onclick="admOpenLogin()" aria-label="Admin login">🛡</button>
+<!-- ══ ADMIN TRIGGER ══ -->
+<button id="adm-trigger" onclick="admOpen()" title="Admin">🛡</button>
 
 <!-- ══ ADMIN OVERLAY ══ -->
-<div class="adm-overlay" id="adm-overlay">
+<div id="adm-overlay">
 
-  <!-- Login panel -->
-  <div id="adm-login-panel" style="display:none;">
-    <div class="adm-login-card">
-      <div class="adm-login-gem">F</div>
-      <div class="adm-login-title">M3 Payment Admin</div>
-      <p class="adm-login-sub">FullonBaan · Infor M3 Training<br>Payment tracking dashboard</p>
-      <input type="password" id="adm-pw" class="adm-pw-input"
-        placeholder="Admin password"
-        onkeydown="if(event.key==='Enter')admDoLogin()"
-        oninput="this.classList.remove('invalid');document.getElementById('adm-pw-err').style.display='none'">
-      <div id="adm-pw-err" class="adm-pw-err">⚠️ Incorrect password. Please try again.</div>
-      <button class="adm-login-btn" onclick="admDoLogin()">Sign In →</button>
+  <div id="adm-login">
+    <div class="alc">
+      <div class="alc-gem">F</div>
+      <h2>M3 Payment Admin</h2>
+      <p>FullonBaan · Infor M3 Training<br>Payment tracking dashboard</p>
+      <input type="password" id="adm-pw" placeholder="Admin password"
+        onkeydown="if(event.key==='Enter')admLogin()"
+        oninput="this.classList.remove('bad');document.getElementById('adm-err').style.display='none'">
+      <div id="adm-err" class="alc-err">⚠️ Incorrect password.</div>
+      <button class="alc-btn" onclick="admLogin()">Sign In →</button>
       <br>
-      <button class="adm-cancel-link" onclick="admClose()">Cancel</button>
+      <button class="alc-cancel" onclick="admClose()">Cancel</button>
     </div>
   </div>
 
-  <!-- Dashboard panel (hidden until login) -->
-  <div id="adm-dash-panel" style="display:none;">
-    <div class="adm-topbar">
-      <div class="adm-topbar-brand">
-        <div class="adm-topbar-gem">F</div>
-        M3 Payments
-      </div>
-      <div class="adm-topbar-right">
-        <div class="adm-sync">
-          <div class="adm-sync-dot" id="adm-sync-dot"></div>
-          <span id="adm-sync-lbl">—</span>
-        </div>
-        <button class="adm-btn-sm gold" onclick="admRefresh()">↻ Refresh</button>
-        <button class="adm-btn-sm" onclick="admClose()">✕ Close</button>
+  <div id="adm-dash">
+    <div class="atb">
+      <div class="atb-brand">M3 Payments</div>
+      <div class="atb-right">
+        <div class="async"><div class="asyncdot" id="adot"></div><span id="aslbl">—</span></div>
+        <button class="ab gold" onclick="admRefresh()">↻ Refresh</button>
+        <button class="ab" onclick="admClose()">✕ Close</button>
       </div>
     </div>
-    <div class="adm-wrap">
-      <div class="adm-stats">
-        <div class="adm-stat"><div class="adm-stat-val all" id="adm-stat-all">—</div><div class="adm-stat-lbl">Total</div></div>
-        <div class="adm-stat"><div class="adm-stat-val init" id="adm-stat-init">—</div><div class="adm-stat-lbl">Initiated</div></div>
-        <div class="adm-stat"><div class="adm-stat-val sub" id="adm-stat-sub">—</div><div class="adm-stat-lbl">Submitted</div></div>
+    <div class="awrap">
+      <div class="astats">
+        <div class="astat"><div class="astat-v" id="ast-all">—</div><div class="astat-l">Total</div></div>
+        <div class="astat"><div class="astat-v i" id="ast-init">—</div><div class="astat-l">Initiated</div></div>
+        <div class="astat"><div class="astat-v s" id="ast-sub">—</div><div class="astat-l">Submitted</div></div>
       </div>
-      <div class="adm-filter-row">
-        <button class="adm-filter-btn active" onclick="admSetFilter('all',this)">All</button>
-        <button class="adm-filter-btn bf"     onclick="admSetFilter('initiated',this)">Initiated</button>
-        <button class="adm-filter-btn gf"     onclick="admSetFilter('submitted',this)">Submitted</button>
+      <div class="afrow">
+        <button class="afbtn on"    onclick="admFilt('all',this)">All</button>
+        <button class="afbtn on bf" onclick="admFilt('initiated',this)">Initiated</button>
+        <button class="afbtn on gf" onclick="admFilt('submitted',this)">Submitted</button>
       </div>
-      <input type="text" id="adm-search" class="adm-search"
-        placeholder="Search name, email, mobile, module, order ref…"
-        oninput="admRenderCards()">
-      <div class="adm-section-hd">Payment Records</div>
-      <div id="adm-cards-list"><div class="adm-empty">⏳ Loading…</div></div>
+      <input class="asrch" id="asrch" placeholder="Search name, email, mobile, module…" oninput="admRender()">
+      <div class="ahd">Payment Records</div>
+      <div id="alist"><div class="aempty">⏳ Loading…</div></div>
     </div>
   </div>
 
-</div><!-- /.adm-overlay -->
+</div>
 
-<div class="adm-toast" id="adm-toast"></div>
-
+<div id="adm-toast"></div>
 
 <script>
-/* ══════════════════════════════════════════
-   M3 ADMIN — CONFIG  (change password before deploying)
-══════════════════════════════════════════ */
-var ADM_PASSWORD   = 'Admin@M3Pay2025';
-var GH_M3_PAY_FILE = 'payments/m3_payments.json';
-var GH_M3_PAY_API  = '/api/github?path=' + GH_M3_PAY_FILE;
-var admRecords     = [];
-var admFilter      = 'all';
+var ADM_PW   = 'Admin@M3Pay2025';
+var ADM_FILE = 'payments/m3_payments.json';
+var ADM_API  = '/api/github?path=' + ADM_FILE;
+var admRecs  = [];
+var admFl    = 'all';
 
-/* ── Overlay open / close ── */
-function admOpenLogin() {
-  var ov = document.getElementById('adm-overlay');
-  var lp = document.getElementById('adm-login-panel');
-  var dp = document.getElementById('adm-dash-panel');
-  ov.classList.add('open');
-  lp.style.display = 'flex';
-  dp.style.display  = 'none';
-  setTimeout(function(){ var el=document.getElementById('adm-pw'); if(el)el.focus(); }, 80);
+function admOpen() {
+  document.getElementById('adm-overlay').classList.add('open');
+  document.getElementById('adm-login').style.display = 'flex';
+  document.getElementById('adm-dash').style.display  = 'none';
   document.body.style.overflow = 'hidden';
+  setTimeout(function(){ document.getElementById('adm-pw').focus(); }, 50);
 }
 function admClose() {
   document.getElementById('adm-overlay').classList.remove('open');
   document.body.style.overflow = '';
 }
-/* Close on ESC */
-document.addEventListener('keydown', function(e){
-  if (e.key === 'Escape') admClose();
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') admClose(); });
+
+// #admin hash support
+(function(){
+  if(window.location.hash === '#admin'){
+    history.replaceState(null,'',window.location.pathname);
+    admOpen();
+  }
+})();
+window.addEventListener('hashchange', function(){
+  if(window.location.hash === '#admin'){
+    history.replaceState(null,'',window.location.pathname);
+    admOpen();
+  }
 });
 
-/* ── Hash routing: fobm3training.vercel.app/#admin ── */
-function admCheckHash() {
-  if (window.location.hash === '#admin') {
-    admOpenLogin();
-    history.replaceState(null, '', window.location.pathname);
-  }
-}
-admCheckHash();
-window.addEventListener('hashchange', admCheckHash);
-
-/* ── Auth ── */
-function admDoLogin() {
+function admLogin() {
   var pw = document.getElementById('adm-pw').value;
-  if (pw === ADM_PASSWORD) {
-    document.getElementById('adm-pw-err').style.display = 'none';
-    document.getElementById('adm-pw').classList.remove('invalid');
+  if(pw === ADM_PW) {
     document.getElementById('adm-pw').value = '';
-    document.getElementById('adm-login-panel').style.display = 'none';
-    document.getElementById('adm-dash-panel').style.display  = 'block';
-    document.body.style.overflow = 'hidden';
-    sessionStorage.setItem('m3_adm_auth', '1');
+    document.getElementById('adm-login').style.display = 'none';
+    document.getElementById('adm-dash').style.display  = 'block';
     admRefresh();
   } else {
-    document.getElementById('adm-pw-err').style.display = 'block';
-    document.getElementById('adm-pw').classList.add('invalid');
+    document.getElementById('adm-err').style.display = 'block';
+    document.getElementById('adm-pw').classList.add('bad');
   }
 }
 
-/* ── GitHub helpers ── */
-function admGhHdr(){ return {'Content-Type':'application/json'}; }
-
+/* ── GitHub ── */
 async function admGhRead() {
-  var res = await fetch(GH_M3_PAY_API, {headers: admGhHdr()});
-  if (res.status === 404) return {records:[], sha:null};
-  if (!res.ok) throw new Error('GH read ' + res.status);
-  var data = await res.json();
-  var content = JSON.parse(atob(data.content.replace(/\n/g,'')));
-  return {records: content, sha: data.sha};
+  var r = await fetch(ADM_API,{headers:{'Content-Type':'application/json'}});
+  if(r.status===404) return {records:[],sha:null};
+  if(!r.ok) throw new Error('GH '+r.status);
+  var d = await r.json();
+  return {records:JSON.parse(atob(d.content.replace(/
+/g,''))), sha:d.sha};
 }
-
-async function admGhWrite(records, sha, msg) {
-  var body = {
-    message: msg || 'm3pay: ' + new Date().toISOString(),
-    content: btoa(unescape(encodeURIComponent(JSON.stringify(records, null, 2))))
-  };
-  if (sha) body.sha = sha;
-  var res = await fetch(GH_M3_PAY_API, {method:'PUT', headers:admGhHdr(), body:JSON.stringify(body)});
-  if (!res.ok) throw new Error('GH write ' + res.status);
-}
-
-async function admGhUpsert(record) {
+async function admGhUpsert(rec) {
   try {
-    admSetSync('syncing','Syncing…');
-    var r = await admGhRead();
-    var idx = r.records.findIndex(function(x){ return x.orderId === record.orderId; });
-    if (idx >= 0) r.records[idx] = Object.assign({}, r.records[idx], record);
-    else r.records.push(record);
-    await admGhWrite(r.records, r.sha, 'm3pay:'+record.status+' '+record.orderId);
-    localStorage.setItem('m3_payments', JSON.stringify(r.records));
-    admSetSync('ok','Synced');
-  } catch(e) {
-    admSetSync('err','Offline');
-    console.warn('GH upsert failed:', e);
-  }
+    admSync('spin','Syncing…');
+    var gh = await admGhRead();
+    var i  = gh.records.findIndex(function(x){return x.orderId===rec.orderId;});
+    if(i>=0) gh.records[i]=Object.assign({},gh.records[i],rec);
+    else gh.records.push(rec);
+    var body={message:'m3pay:'+rec.status+' '+rec.orderId,
+      content:btoa(unescape(encodeURIComponent(JSON.stringify(gh.records,null,2))))};
+    if(gh.sha) body.sha=gh.sha;
+    var w=await fetch(ADM_API,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    if(!w.ok) throw new Error('GH write '+w.status);
+    localStorage.setItem('m3_payments',JSON.stringify(gh.records));
+    admSync('ok','Synced');
+  } catch(e){ admSync('err','Offline'); console.warn(e); }
 }
-
 async function admGhMerge() {
-  var ghRecs = [];
-  try {
-    var r = await admGhRead();
-    ghRecs = r.records;
-    admSetSync('ok','Synced');
-  } catch(e) {
-    admSetSync('err','Offline');
-  }
-  var local = JSON.parse(localStorage.getItem('m3_payments')||'[]');
-  var merged = ghRecs.slice();
-  local.forEach(function(l){
-    if (!merged.find(function(x){ return x.orderId===l.orderId; })) merged.push(l);
-  });
-  localStorage.setItem('m3_payments', JSON.stringify(merged));
-  return merged;
+  var gh=[];
+  try{ var r=await admGhRead(); gh=r.records; admSync('ok','Synced'); }
+  catch(e){ admSync('err','Offline'); }
+  var lo=JSON.parse(localStorage.getItem('m3_payments')||'[]');
+  var m=gh.slice();
+  lo.forEach(function(l){if(!m.find(function(x){return x.orderId===l.orderId;}))m.push(l);});
+  localStorage.setItem('m3_payments',JSON.stringify(m));
+  return m;
 }
 
-/* ── Public payment hooks (called from payment JS) ── */
-window.m3PayInitiated = function(txnRef, userData, selDesc, selAmount) {
-  var rec = {orderId:txnRef, status:'initiated', name:userData.name, email:userData.email,
-    mobile:userData.mobile, module:selDesc, amount:selAmount,
-    initiatedAt:new Date().toISOString(), submittedAt:null, utr:null};
-  var local = JSON.parse(localStorage.getItem('m3_payments')||'[]');
-  var idx = local.findIndex(function(x){ return x.orderId===txnRef; });
-  if (idx>=0) local[idx]=Object.assign({},local[idx],rec); else local.push(rec);
-  localStorage.setItem('m3_payments', JSON.stringify(local));
+/* ── Public hooks ── */
+window.m3PayInitiated = function(txnRef,userData,selDesc,selAmount){
+  var rec={orderId:txnRef,status:'initiated',name:userData.name,email:userData.email,
+    mobile:userData.mobile,module:selDesc,amount:selAmount,
+    initiatedAt:new Date().toISOString(),submittedAt:null,utr:null};
+  var lo=JSON.parse(localStorage.getItem('m3_payments')||'[]');
+  var i=lo.findIndex(function(x){return x.orderId===txnRef;});
+  if(i>=0) lo[i]=Object.assign({},lo[i],rec); else lo.push(rec);
+  localStorage.setItem('m3_payments',JSON.stringify(lo));
   admGhUpsert(rec);
 };
-
-window.m3PaySubmitted = function(txnRef, utrNumber) {
-  var local = JSON.parse(localStorage.getItem('m3_payments')||'[]');
-  var idx = local.findIndex(function(x){ return x.orderId===txnRef; });
-  var upd = {status:'submitted', utr:utrNumber, submittedAt:new Date().toISOString()};
-  if (idx>=0) {
-    local[idx]=Object.assign({},local[idx],upd);
-    localStorage.setItem('m3_payments', JSON.stringify(local));
-    admGhUpsert(local[idx]);
-  } else {
-    admGhUpsert(Object.assign({orderId:txnRef,name:'—',email:'—',mobile:'—',module:'—',amount:0,initiatedAt:null},upd));
-  }
+window.m3PaySubmitted = function(txnRef,utr){
+  var lo=JSON.parse(localStorage.getItem('m3_payments')||'[]');
+  var i=lo.findIndex(function(x){return x.orderId===txnRef;});
+  var upd={status:'submitted',utr:utr,submittedAt:new Date().toISOString()};
+  if(i>=0){lo[i]=Object.assign({},lo[i],upd);localStorage.setItem('m3_payments',JSON.stringify(lo));admGhUpsert(lo[i]);}
+  else admGhUpsert(Object.assign({orderId:txnRef,name:'—',email:'—',mobile:'—',module:'—',amount:0,initiatedAt:null},upd));
 };
 
 /* ── Dashboard ── */
 async function admRefresh() {
-  var list = document.getElementById('adm-cards-list');
-  if (list) list.innerHTML = '<div class="adm-empty">⏳ Syncing with GitHub…</div>';
-  admSetSync('syncing','Syncing…');
-  try {
-    admRecords = await admGhMerge();
-  } catch(e) {
-    admRecords = JSON.parse(localStorage.getItem('m3_payments')||'[]');
-    admSetSync('err','Offline');
-  }
-  admUpdateStats();
-  admRenderCards();
+  document.getElementById('alist').innerHTML='<div class="aempty">⏳ Syncing with GitHub…</div>';
+  admSync('spin','Syncing…');
+  try{ admRecs=await admGhMerge(); }
+  catch(e){ admRecs=JSON.parse(localStorage.getItem('m3_payments')||'[]'); admSync('err','Offline'); }
+  admStats(); admRender();
 }
-
-function admUpdateStats() {
-  var init = admRecords.filter(function(r){return r.status==='initiated';}).length;
-  var sub  = admRecords.filter(function(r){return r.status==='submitted';}).length;
-  ['adm-stat-all','adm-stat-init','adm-stat-sub'].forEach(function(id,i){
-    var el = document.getElementById(id);
-    if (el) el.textContent = [admRecords.length, init, sub][i];
-  });
+function admStats() {
+  var i=admRecs.filter(function(r){return r.status==='initiated';}).length;
+  var s=admRecs.filter(function(r){return r.status==='submitted';}).length;
+  document.getElementById('ast-all').textContent  = admRecs.length;
+  document.getElementById('ast-init').textContent = i;
+  document.getElementById('ast-sub').textContent  = s;
 }
-
-function admSetFilter(f, btn) {
-  admFilter = f;
-  document.querySelectorAll('.adm-filter-btn').forEach(function(b){ b.classList.remove('active'); });
-  btn.classList.add('active');
-  admRenderCards();
+function admFilt(f,btn) {
+  admFl=f;
+  document.querySelectorAll('.afbtn').forEach(function(b){b.classList.remove('on');});
+  btn.classList.add('on');
+  admRender();
 }
-
-function admRenderCards() {
-  var q    = ((document.getElementById('adm-search')||{}).value||'').toLowerCase();
-  var list = document.getElementById('adm-cards-list');
-  if (!list) return;
-  var recs = admFilter==='all' ? admRecords : admRecords.filter(function(r){return r.status===admFilter;});
-  if (q) recs = recs.filter(function(r){
-    return ['name','email','mobile','module','orderId','utr'].some(function(k){
-      return (r[k]||'').toLowerCase().includes(q);
-    });
-  });
-  recs = recs.slice().sort(function(a,b){
-    if (a.status!==b.status) return a.status==='submitted'?-1:1;
+function admRender() {
+  var q=(document.getElementById('asrch').value||'').toLowerCase();
+  var r=admFl==='all'?admRecs:admRecs.filter(function(x){return x.status===admFl;});
+  if(q) r=r.filter(function(x){return ['name','email','mobile','module','orderId','utr'].some(function(k){return (x[k]||'').toLowerCase().includes(q);});});
+  r=r.slice().sort(function(a,b){
+    if(a.status!==b.status) return a.status==='submitted'?-1:1;
     return new Date(b.submittedAt||b.initiatedAt||0)-new Date(a.submittedAt||a.initiatedAt||0);
   });
-  if (!recs.length) {
-    list.innerHTML='<div class="adm-empty">No records found'+(q?' for "'+admEH(q)+'"':'')+'.</div>';
-    return;
-  }
-  list.innerHTML = recs.map(admBuildCard).join('');
+  var el=document.getElementById('alist');
+  if(!r.length){el.innerHTML='<div class="aempty">No records found.</div>';return;}
+  el.innerHTML=r.map(admCard).join('');
 }
-
-function admBuildCard(r) {
-  var isSub = r.status==='submitted';
-  function ft(iso){ return iso?new Date(iso).toLocaleString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}):'—'; }
-  var acts = '';
-  if(r.email)  acts+='<button class="adm-copy-btn" onclick="admCopy(''+admEA(r.email)+'','Email')">📧 Email</button>';
-  if(r.utr)    acts+='<button class="adm-copy-btn" onclick="admCopy(''+admEA(r.utr)+'','UTR')">🔑 UTR</button>';
-  if(r.mobile) acts+='<button class="adm-copy-btn" onclick="admCopy('+91'+admEA(r.mobile)+'','Mobile')">📱 Mobile</button>';
-  acts+='<button class="adm-copy-btn" onclick="admCopy(''+admEA(r.orderId)+'','Ref')">📋 Ref</button>';
-  return '<div class="adm-card">'
-    +'<div class="adm-card-top"><div>'
-    +'<div class="adm-card-name">'+admEH(r.name||'—')+'</div>'
-    +'<div class="adm-card-email">'+admEH(r.email||'—')+(r.mobile?' · +91 '+admEH(r.mobile):'')+'</div>'
-    +'</div><span class="adm-badge '+(isSub?'sub':'init')+'">'+(isSub?'✅ Submitted':'💳 Initiated')+'</span></div>'
-    +'<div class="adm-meta">'
-    +'<div class="adm-meta-item"><div class="adm-meta-val">'+admEH(r.module||'—')+'</div><div class="adm-meta-key">Module</div></div>'
-    +'<div class="adm-meta-item"><div class="adm-meta-val">'+(r.amount?'₹'+Number(r.amount).toLocaleString('en-IN'):'—')+'</div><div class="adm-meta-key">Amount</div></div>'
-    +'<div class="adm-meta-item"><div class="adm-meta-val">'+admEH(r.orderId||'—')+'</div><div class="adm-meta-key">Order Ref</div></div>'
-    +'<div class="adm-meta-item"><div class="adm-meta-val">'+(r.utr?admEH(r.utr):'<span style="color:#6e6b65">Not yet</span>')+'</div><div class="adm-meta-key">UTR / Txn Ref</div></div>'
+function admCard(r) {
+  var s=r.status==='submitted';
+  function ft(d){return d?new Date(d).toLocaleString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}):'—';}
+  var acts='';
+  if(r.email)  acts+='<button class="acopy" onclick="admCp(''+aE(r.email)+'','Email')">📧 Email</button>';
+  if(r.utr)    acts+='<button class="acopy" onclick="admCp(''+aE(r.utr)+'','UTR')">🔑 UTR</button>';
+  if(r.mobile) acts+='<button class="acopy" onclick="admCp('+91'+aE(r.mobile)+'','Mobile')">📱 Mobile</button>';
+  acts+='<button class="acopy" onclick="admCp(''+aE(r.orderId)+'','Ref')">📋 Ref</button>';
+  return '<div class="acard">'
+    +'<div class="acard-top"><div><div class="acard-name">'+aH(r.name||'—')+'</div>'
+    +'<div class="acard-email">'+aH(r.email||'—')+(r.mobile?' · +91 '+aH(r.mobile):'')+'</div></div>'
+    +'<span class="abadge '+(s?'s':'i')+'">'+(s?'✅ Submitted':'💳 Initiated')+'</span></div>'
+    +'<div class="ameta">'
+    +'<div class="ami"><div class="ami-v">'+aH(r.module||'—')+'</div><div class="ami-k">Module</div></div>'
+    +'<div class="ami"><div class="ami-v">'+(r.amount?'₹'+Number(r.amount).toLocaleString('en-IN'):'—')+'</div><div class="ami-k">Amount</div></div>'
+    +'<div class="ami"><div class="ami-v">'+aH(r.orderId||'—')+'</div><div class="ami-k">Order Ref</div></div>'
+    +'<div class="ami"><div class="ami-v">'+(r.utr?aH(r.utr):'<span style="color:#6e6b65">Not yet</span>')+'</div><div class="ami-k">UTR</div></div>'
     +'</div>'
-    +'<div class="adm-timeline">'
-    +'<div class="adm-tl-row"><div class="adm-tl-dot blue"></div><div class="adm-tl-lbl">Initiated</div><div class="adm-tl-val">'+ft(r.initiatedAt)+'</div></div>'
-    +'<div class="adm-tl-row"><div class="adm-tl-dot '+(isSub?'green':'grey')+'"></div><div class="adm-tl-lbl">Submitted</div><div class="adm-tl-val">'+(isSub?ft(r.submittedAt):'<span style="color:#6e6b65">Awaiting…</span>')+'</div></div>'
+    +'<div class="atl">'
+    +'<div class="atlr"><div class="atld b"></div><div class="atll">Initiated</div><div class="atlv">'+ft(r.initiatedAt)+'</div></div>'
+    +'<div class="atlr"><div class="atld '+(s?'g':'x')+'"></div><div class="atll">Submitted</div><div class="atlv">'+(s?ft(r.submittedAt):'<span style="color:#6e6b65">Awaiting…</span>')+'</div></div>'
     +'</div>'
-    +'<div class="adm-card-actions">'+acts+'</div>'
+    +'<div class="aacts">'+acts+'</div>'
     +'</div>';
 }
 
 /* ── Helpers ── */
-function admSetSync(state, label) {
-  var dot=document.getElementById('adm-sync-dot'), lbl=document.getElementById('adm-sync-lbl');
-  if(dot) dot.className='adm-sync-dot '+state;
-  if(lbl&&label) lbl.textContent=label;
+function admSync(st,lb){
+  var d=document.getElementById('adot'),l=document.getElementById('aslbl');
+  if(d) d.className='asyncdot '+st;
+  if(l&&lb) l.textContent=lb;
 }
-function admCopy(text,label){
-  navigator.clipboard.writeText(text)
-    .then(function(){ admToast('📋 Copied '+label+': '+text); })
-    .catch(function(){ admToast('📋 '+label+': '+text+' (copy manually)'); });
+function admCp(t,lb){
+  navigator.clipboard.writeText(t)
+    .then(function(){admToast('📋 Copied '+lb);})
+    .catch(function(){admToast(lb+': '+t);});
 }
-var _admToastT;
-function admToast(msg){
+var _att;
+function admToast(m){
   var el=document.getElementById('adm-toast');if(!el)return;
-  el.textContent=msg;el.classList.add('show');
-  clearTimeout(_admToastT);_admToastT=setTimeout(function(){el.classList.remove('show');},3000);
+  el.textContent=m;el.classList.add('show');
+  clearTimeout(_att);_att=setTimeout(function(){el.classList.remove('show');},2800);
 }
-function admEH(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-function admEA(s){ return String(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'\\"'); }
+function aH(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function aE(s){return String(s||'').replace(/'/g,"\'");}
 
-/* Pre-populate stats from localStorage immediately */
+/* Seed from localStorage on load */
 (function(){
-  var local=JSON.parse(localStorage.getItem('m3_payments')||'[]');
-  if(local.length){admRecords=local;admUpdateStats();}
+  var lo=JSON.parse(localStorage.getItem('m3_payments')||'[]');
+  if(lo.length){admRecs=lo;admStats();}
 })();
 </script>
 
