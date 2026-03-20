@@ -707,20 +707,21 @@
 
   /* Full-screen overlay */
   .adm-overlay {
-    display: none;
+    display: none !important;
     position: fixed; inset: 0; z-index: 9100;
     overflow-y: auto;
   }
-  .adm-overlay.open { display: block; }
+  .adm-overlay.open { display: block !important; }
 
   /* Login panel */
   #adm-login-panel {
     min-height: 100vh;
     background: #0d0d0d;
     background-image: radial-gradient(ellipse at 50% 0%, rgba(201,148,62,.07) 0%, transparent 65%);
-    display: flex; align-items: center; justify-content: center;
+    display: none; align-items: center; justify-content: center;
     padding: 40px 20px;
   }
+  #adm-login-panel.visible { display: flex; }
   .adm-login-card {
     background: #161616; border: 1px solid rgba(255,255,255,.12);
     border-radius: 20px; padding: 44px 36px;
@@ -1223,11 +1224,11 @@
             <div class="ci-val">+91 63605 93122</div>
           </div>
         </a>
-        <a class="ci" href="mailto:fullonbaan@gmail.com?subject=Infor%20M3%20Training%20Materials%20Enquiry&body=Hi%20FullonBaan%2C%20I%20am%20interested%20in%20the%20Infor%20M3%20Training%20Materials.%20Please%20share%20more%20details.">
+        <a class="ci" href="/cdn-cgi/l/email-protection#c8aebda4a4a7a6aaa9a9a688afa5a9a1a4e6aba7a5f7bbbdaaa2adabbcf581a6aea7baedfaf885fbedfaf89cbaa9a1a6a1a6afedfaf885a9bcadbaa1a9a4bbedfaf88da6b9bda1bab1eeaaa7acb1f580a1edfaf88ebda4a4a7a68aa9a9a6edfa8bedfaf881edfaf8a9a5edfaf8a1a6bcadbaadbbbcadacedfaf8a1a6edfaf8bca0adedfaf881a6aea7baedfaf885fbedfaf89cbaa9a1a6a1a6afedfaf885a9bcadbaa1a9a4bbe6edfaf898a4ada9bbadedfaf8bba0a9baadedfaf8a5a7baadedfaf8acadbca9a1a4bbe6">
           <span class="ci-icon">✉️</span>
           <div>
             <div class="ci-label">Email</div>
-            <div class="ci-val">fullonbaan@gmail.com</div>
+            <div class="ci-val"><span class="__cf_email__" data-cfemail="a5c3d0c9c9cacbc7c4c4cbe5c2c8c4ccc98bc6cac8">[email&#160;protected]</span></div>
           </div>
         </a>
         <a class="ci" href="https://www.fullonbaan.com" target="_blank" rel="noopener">
@@ -1529,11 +1530,11 @@
         Instagram
       </a>
     </div>
-    <div class="footer-copy">© 2025 FullonBaan IT Solutions · Bangalore, India · fullonbaan@gmail.com · +91 63605 93122</div>
+    <div class="footer-copy">© 2025 FullonBaan IT Solutions · Bangalore, India · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7e180b121211101c1f1f103e19131f1712501d1113">[email&#160;protected]</a> · +91 63605 93122</div>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ═══════════════════════════════════════════════════════════════
   //  EMAILJS CREDENTIALS
   // ═══════════════════════════════════════════════════════════════
@@ -1867,7 +1868,7 @@
 <div class="adm-overlay" id="adm-overlay">
 
   <!-- Login panel -->
-  <div id="adm-login-panel">
+  <div id="adm-login-panel" style="display:none;">
     <div class="adm-login-card">
       <div class="adm-login-gem">F</div>
       <div class="adm-login-title">M3 Payment Admin</div>
@@ -1935,13 +1936,18 @@ var admFilter      = 'all';
 
 /* ── Overlay open / close ── */
 function admOpenLogin() {
-  document.getElementById('adm-overlay').classList.add('open');
-  document.getElementById('adm-login-panel').style.display = 'flex';
-  document.getElementById('adm-dash-panel').style.display  = 'none';
+  var ov = document.getElementById('adm-overlay');
+  var lp = document.getElementById('adm-login-panel');
+  var dp = document.getElementById('adm-dash-panel');
+  ov.classList.add('open');
+  lp.style.display = 'flex';
+  dp.style.display  = 'none';
   setTimeout(function(){ var el=document.getElementById('adm-pw'); if(el)el.focus(); }, 80);
+  document.body.style.overflow = 'hidden';
 }
 function admClose() {
   document.getElementById('adm-overlay').classList.remove('open');
+  document.body.style.overflow = '';
 }
 /* Close on ESC */
 document.addEventListener('keydown', function(e){
@@ -1967,6 +1973,7 @@ function admDoLogin() {
     document.getElementById('adm-pw').value = '';
     document.getElementById('adm-login-panel').style.display = 'none';
     document.getElementById('adm-dash-panel').style.display  = 'block';
+    document.body.style.overflow = 'hidden';
     sessionStorage.setItem('m3_adm_auth', '1');
     admRefresh();
   } else {
