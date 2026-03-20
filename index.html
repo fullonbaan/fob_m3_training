@@ -2024,10 +2024,10 @@ function admCard(r) {
   var s=r.status==='submitted';
   function ft(d){return d?new Date(d).toLocaleString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}):'—';}
   var acts='';
-  if(r.email)  acts+='<button class="acopy" onclick="admCp(''+aE(r.email)+'','Email')">📧 Email</button>';
-  if(r.utr)    acts+='<button class="acopy" onclick="admCp(''+aE(r.utr)+'','UTR')">🔑 UTR</button>';
-  if(r.mobile) acts+='<button class="acopy" onclick="admCp('+91'+aE(r.mobile)+'','Mobile')">📱 Mobile</button>';
-  acts+='<button class="acopy" onclick="admCp(''+aE(r.orderId)+'','Ref')">📋 Ref</button>';
+  if(r.email)  acts+='<button class="acopy" onclick="admCp(\''+aE(r.email)+'\',\'Email\')">📧 Email</button>';
+  if(r.utr)    acts+='<button class="acopy" onclick="admCp(\''+aE(r.utr)+'\',\'UTR\')">🔑 UTR</button>';
+  if(r.mobile) acts+='<button class="acopy" onclick="admCp(\'+91'+aE(r.mobile)+'\',\'Mobile\')">📱 Mobile</button>';
+  acts+='<button class="acopy" onclick="admCp(\''+aE(r.orderId)+'\',\'Ref\')">📋 Ref</button>';
   return '<div class="acard">'
     +'<div class="acard-top"><div><div class="acard-name">'+aH(r.name||'—')+'</div>'
     +'<div class="acard-email">'+aH(r.email||'—')+(r.mobile?' · +91 '+aH(r.mobile):'')+'</div></div>'
@@ -2064,7 +2064,7 @@ function admToast(m){
   clearTimeout(_att);_att=setTimeout(function(){el.classList.remove('show');},2800);
 }
 function aH(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function aE(s){return String(s||'').replace(/'/g,"\'");}
+function aE(s){return String(s||'').replace(/'/g,"\\'");}
 
 /* Seed from localStorage on load */
 (function(){
