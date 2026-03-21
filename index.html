@@ -486,6 +486,16 @@
   .tag-ebook-only { display:inline-block; margin-top:4px; font-size:9px; font-weight:600; color:var(--gold); background:rgba(168,120,42,0.12); border:1px solid rgba(168,120,42,0.30); border-radius:20px; padding:2px 8px; white-space:nowrap; }
   .pna { color:var(--border); font-family:'DM Mono',monospace; font-size:14px; }
   .cval { font-family:'Noto Serif',serif; font-weight:700; font-size:15px; background:linear-gradient(135deg,var(--gold) 0%,var(--rust) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+  /* Strikethrough anchor pricing */
+  .price-orig { display:block; font-family:'Work Sans',sans-serif; font-size:11px; color:var(--ink-lt); text-decoration:line-through; margin-bottom:2px; }
+
+  /* Popular badge */
+  .tag-popular { display:inline-block; margin-left:8px; vertical-align:middle; font-size:9px; font-weight:700; color:#fff; background:var(--green); border-radius:20px; padding:3px 10px; letter-spacing:.4px; text-transform:uppercase; white-space:nowrap; }
+
+  /* Series card popular badge */
+  .sc-popular { display:inline-block; margin-left:6px; vertical-align:middle; font-size:8px; font-weight:700; color:#fff; background:var(--green); border-radius:20px; padding:2px 8px; letter-spacing:.3px; text-transform:uppercase; }
+
   @media(max-width:860px){
     .pricing-layout { grid-template-columns: 1fr; }
     .price-table thead th, .price-table tbody td { padding:10px 8px; font-size:11px; }
@@ -910,14 +920,14 @@
       <div class="hero-card">
       <div class="hc-label">Training Modules &amp; Pricing</div>
       <div class="hc-rows">
-        <div class="hc-row"><span class="hc-mod">Mastering Infor M3 QMS</span><div class="hc-prices"><span class="hc-ebook">₹499</span></div></div>
-        <div class="hc-row"><span class="hc-mod">Mastering Infor M3 EAM</span><div class="hc-prices"><span class="hc-ebook">₹499</span></div></div>
-        <div class="hc-row"><span class="hc-mod">Mastering Infor M3 Sales CRM</span><div class="hc-prices"><span class="hc-ebook">₹499</span></div></div>
-        <div class="hc-row"><span class="hc-mod">Mastering Infor M3 Finance</span><div class="hc-prices"><span class="hc-ebook">₹499</span></div></div>
-        <div class="hc-row"><span class="hc-mod">Mastering Infor M3 Manufacturing</span><div class="hc-prices"><span class="hc-ebook">₹499</span></div></div>
-        <div class="hc-row"><span class="hc-mod">Mastering Infor M3 SCM Management</span><div class="hc-prices"><span class="hc-ebook">₹499</span></div></div>
-        <div class="hc-row"><span class="hc-mod">Mastering Infor M3 Technical Foundation</span><div class="hc-prices"><span class="hc-ebook">₹499</span></div></div>
-        <div class="hc-row" style="border-top:1px solid var(--gold-pale);margin-top:4px;padding-top:8px;"><span class="hc-mod" style="font-weight:700;color:var(--gold);">All 7 eBooks — Combo Bundle</span><div class="hc-prices"><span class="hc-combo">₹2,499</span></div></div>
+        <div class="hc-row"><span class="hc-mod">Mastering Infor M3 QMS</span><div class="hc-prices"><span class="hc-ebook">₹699</span></div></div>
+        <div class="hc-row"><span class="hc-mod">Mastering Infor M3 EAM</span><div class="hc-prices"><span class="hc-ebook">₹699</span></div></div>
+        <div class="hc-row"><span class="hc-mod">Mastering Infor M3 Sales CRM</span><div class="hc-prices"><span class="hc-ebook">₹699</span></div></div>
+        <div class="hc-row"><span class="hc-mod">Mastering Infor M3 Finance <span class="tag-popular" style="font-size:7px;padding:2px 6px;">Popular</span></span><div class="hc-prices"><span class="hc-ebook">₹699</span></div></div>
+        <div class="hc-row"><span class="hc-mod">Mastering Infor M3 Manufacturing <span class="tag-popular" style="font-size:7px;padding:2px 6px;">Popular</span></span><div class="hc-prices"><span class="hc-ebook">₹699</span></div></div>
+        <div class="hc-row"><span class="hc-mod">Mastering Infor M3 SCM Management</span><div class="hc-prices"><span class="hc-ebook">₹699</span></div></div>
+        <div class="hc-row"><span class="hc-mod">Mastering Infor M3 Technical Foundation</span><div class="hc-prices"><span class="hc-ebook">₹699</span></div></div>
+        <div class="hc-row" style="border-top:1px solid var(--gold-pale);margin-top:4px;padding-top:8px;"><span class="hc-mod" style="font-weight:700;color:var(--gold);">All 7 eBooks — Combo Bundle</span><div class="hc-prices"><span class="hc-combo">₹2,999</span></div></div>
       </div>
       <div class="hc-footer">Expert-curated · Self-paced · Instant delivery</div>
     </div>
@@ -934,7 +944,7 @@
     <span>✦ <strong>Mastering Infor M3 Manufacturing</strong></span>
     <span>✦ <strong>Mastering Infor M3 SCM Management</strong></span>
     <span>✦ <strong>Mastering Infor M3 Technical Foundation</strong></span>
-    <span>✦ <strong>All 7 eBooks — Combo ₹2,499</strong></span>
+    <span>✦ <strong>All 7 eBooks — Combo ₹2,999</strong></span>
     <span>✦ <strong>10+ Years Experience</strong></span>
     <span>✦ <strong>Instant eBook Delivery</strong></span>
     <!-- duplicate for seamless loop -->
@@ -945,7 +955,7 @@
     <span>✦ <strong>Mastering Infor M3 Manufacturing</strong></span>
     <span>✦ <strong>Mastering Infor M3 SCM Management</strong></span>
     <span>✦ <strong>Mastering Infor M3 Technical Foundation</strong></span>
-    <span>✦ <strong>All 7 eBooks — Combo ₹2,499</strong></span>
+    <span>✦ <strong>All 7 eBooks — Combo ₹2,999</strong></span>
     <span>✦ <strong>10+ Years Experience</strong></span>
     <span>✦ <strong>Instant eBook Delivery</strong></span>
   </div>
@@ -1028,10 +1038,10 @@
             <div class="pp-card pp-stat-card">
               <div class="pp-stats">
                 <div class="pp-stat"><div class="pp-stat-val">7</div><div class="pp-stat-label">eBooks</div></div>
-                <div class="pp-stat"><div class="pp-stat-val">₹499</div><div class="pp-stat-label">Per eBook</div></div>
-                <div class="pp-stat"><div class="pp-stat-val">₹2,499</div><div class="pp-stat-label">All Bundle</div></div>
+                <div class="pp-stat"><div class="pp-stat-val">₹699</div><div class="pp-stat-label">Per eBook</div></div>
+                <div class="pp-stat"><div class="pp-stat-val">₹2,999</div><div class="pp-stat-label">All Bundle</div></div>
               </div>
-              <div class="pp-cta-note">Save ₹994 with the All 7 eBooks bundle</div>
+              <div class="pp-cta-note">Save ₹1,894 with the All 7 eBooks bundle</div>
             </div>
           </div>
         </div>
@@ -1046,49 +1056,49 @@
         <div class="sc-title">Mastering Infor M3 QMS</div>
         <div class="sc-desc">Quality inspection, non-conformance management, quality orders, supplier quality tracking</div>
         <div class="sc-meta">Premium eBook</div>
-        <div class="sc-price">&#x20B9;499 <span>/ eBook</span></div>
+        <div class="sc-price"><span class="price-orig">&#x20B9;999</span>&#x20B9;699 <span>/ eBook</span></div>
       </div>
       <div class="series-card sc-teal">
         <div class="sc-module">Asset Management</div>
         <div class="sc-title">Mastering Infor M3 EAM</div>
         <div class="sc-desc">Equipment master, maintenance orders, work requests, preventive maintenance schedules</div>
         <div class="sc-meta">Premium eBook</div>
-        <div class="sc-price">&#x20B9;499 <span>/ eBook</span></div>
+        <div class="sc-price"><span class="price-orig">&#x20B9;999</span>&#x20B9;699 <span>/ eBook</span></div>
       </div>
       <div class="series-card sc-gold">
         <div class="sc-module">Sales &amp; CRM</div>
         <div class="sc-title">Mastering Infor M3 Sales CRM</div>
         <div class="sc-desc">Customer orders, price lists, quotations, sales statistics and CRM pipeline management</div>
         <div class="sc-meta">Premium eBook</div>
-        <div class="sc-price">&#x20B9;499 <span>/ eBook</span></div>
+        <div class="sc-price"><span class="price-orig">&#x20B9;999</span>&#x20B9;699 <span>/ eBook</span></div>
       </div>
       <div class="series-card sc-rust">
-        <div class="sc-module">Finance</div>
+        <div class="sc-module">Finance <span class="sc-popular">Popular</span></div>
         <div class="sc-title">Mastering Infor M3 Finance</div>
         <div class="sc-desc">GL, AP, AR, cost accounting, period-end close, revaluation and financial reporting</div>
         <div class="sc-meta">Premium eBook</div>
-        <div class="sc-price">&#x20B9;499 <span>/ eBook</span></div>
+        <div class="sc-price"><span class="price-orig">&#x20B9;999</span>&#x20B9;699 <span>/ eBook</span></div>
       </div>
       <div class="series-card sc-violet">
-        <div class="sc-module">Manufacturing</div>
+        <div class="sc-module">Manufacturing <span class="sc-popular">Popular</span></div>
         <div class="sc-title">Mastering Infor M3 Manufacturing</div>
         <div class="sc-desc">Production orders, BOMs, routings, shop floor control, capacity planning and MPS/MRP</div>
         <div class="sc-meta">Premium eBook</div>
-        <div class="sc-price">&#x20B9;499 <span>/ eBook</span></div>
+        <div class="sc-price"><span class="price-orig">&#x20B9;999</span>&#x20B9;699 <span>/ eBook</span></div>
       </div>
       <div class="series-card sc-green">
         <div class="sc-module">Supply Chain</div>
         <div class="sc-title">Mastering Infor M3 SCM</div>
         <div class="sc-desc">Procurement, inventory management, warehouse operations, distribution and supplier collaboration</div>
         <div class="sc-meta">Premium eBook</div>
-        <div class="sc-price">&#x20B9;499 <span>/ eBook</span></div>
+        <div class="sc-price"><span class="price-orig">&#x20B9;999</span>&#x20B9;699 <span>/ eBook</span></div>
       </div>
       <div class="series-card sc-orange">
         <div class="sc-module">Technical</div>
         <div class="sc-title">Mastering Infor M3 Technical Foundation</div>
         <div class="sc-desc">M3 architecture, APIs, Business Engine, Infor OS integration, extensibility and customisation</div>
         <div class="sc-meta">Premium eBook</div>
-        <div class="sc-price">&#x20B9;499 <span>/ eBook</span></div>
+        <div class="sc-price"><span class="price-orig">&#x20B9;999</span>&#x20B9;699 <span>/ eBook</span></div>
       </div>
     </div>
 
@@ -1113,7 +1123,7 @@
       <div class="pricing-aside">
         <div class="section-label">Simple Pricing</div>
         <h2 class="section-title">eBook Modules &amp; Plans</h2>
-        <p class="section-sub">Every eBook priced at ₹499. Bundle all 7 and save ₹994 — only ₹2,499 for the complete M3 library.</p>
+        <p class="section-sub">Every eBook priced at ₹699. Bundle all 7 and save ₹1,894 — only ₹2,999 for the complete M3 library.</p>
         <ul class="aside-features">
           <li><span>✦</span> Certified Content</li>
           <li><span>✦</span> Elite Documentation</li>
@@ -1132,14 +1142,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="highlight-row"><td class="num">01</td><td class="mod">Mastering Infor M3 QMS</td><td><span class="pval">₹499</span></td></tr>
-            <tr class="highlight-row"><td class="num">02</td><td class="mod">Mastering Infor M3 EAM</td><td><span class="pval">₹499</span></td></tr>
-            <tr class="highlight-row"><td class="num">03</td><td class="mod">Mastering Infor M3 Sales CRM</td><td><span class="pval">₹499</span></td></tr>
-            <tr class="highlight-row"><td class="num">04</td><td class="mod">Mastering Infor M3 Finance</td><td><span class="pval">₹499</span></td></tr>
-            <tr class="highlight-row"><td class="num">05</td><td class="mod">Mastering Infor M3 Manufacturing</td><td><span class="pval">₹499</span></td></tr>
-            <tr class="highlight-row"><td class="num">06</td><td class="mod">Mastering Infor M3 SCM Management</td><td><span class="pval">₹499</span></td></tr>
-            <tr class="highlight-row"><td class="num">07</td><td class="mod">Mastering Infor M3 Technical Foundation</td><td><span class="pval">₹499</span></td></tr>
-            <tr style="background:var(--gold-pale);"><td class="num" colspan="2"><strong style="color:var(--gold);">🎁 All 7 eBooks — Combo Bundle</strong><br><span style="font-size:11px;color:var(--ink-mid);">Save ₹994 vs buying individually</span></td><td><span class="cval">₹2,499</span><br><span class="save-badge">Save ₹994</span></td></tr>
+            <tr class="highlight-row"><td class="num">01</td><td class="mod">Mastering Infor M3 QMS</td><td><span class="price-orig">₹999</span><span class="pval">₹699</span></td></tr>
+            <tr class="highlight-row"><td class="num">02</td><td class="mod">Mastering Infor M3 EAM</td><td><span class="price-orig">₹999</span><span class="pval">₹699</span></td></tr>
+            <tr class="highlight-row"><td class="num">03</td><td class="mod">Mastering Infor M3 Sales CRM</td><td><span class="price-orig">₹999</span><span class="pval">₹699</span></td></tr>
+            <tr class="highlight-row"><td class="num">04</td><td class="mod">Mastering Infor M3 Finance<span class="tag-popular">Popular</span></td><td><span class="price-orig">₹999</span><span class="pval">₹699</span></td></tr>
+            <tr class="highlight-row"><td class="num">05</td><td class="mod">Mastering Infor M3 Manufacturing<span class="tag-popular">Popular</span></td><td><span class="price-orig">₹999</span><span class="pval">₹699</span></td></tr>
+            <tr class="highlight-row"><td class="num">06</td><td class="mod">Mastering Infor M3 SCM Management</td><td><span class="price-orig">₹999</span><span class="pval">₹699</span></td></tr>
+            <tr class="highlight-row"><td class="num">07</td><td class="mod">Mastering Infor M3 Technical Foundation</td><td><span class="price-orig">₹999</span><span class="pval">₹699</span></td></tr>
+            <tr style="background:var(--gold-pale);"><td class="num" colspan="2"><strong style="color:var(--gold);">🎁 All 7 eBooks — Combo Bundle</strong><br><span style="font-size:11px;color:var(--ink-mid);">Save ₹1,894 vs buying individually</span></td><td><span class="cval">₹2,999</span><br><span class="save-badge">Save ₹1,894</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -1237,17 +1247,17 @@
                   <span class="pay-label">Select Module</span>
                   <select class="pay-select" id="modSelect" onchange="onModuleChange()">
                     <option value="">— Choose an eBook —</option>
-                    <optgroup label="📘 Individual eBooks — ₹499 each">
-                      <option value="qms_ebook">Mastering Infor M3 QMS — eBook — ₹499</option>
-                      <option value="eam_ebook">Mastering Infor M3 EAM — eBook — ₹499</option>
-                      <option value="crm_ebook">Mastering Infor M3 Sales CRM — eBook — ₹499</option>
-                      <option value="fin_ebook">Mastering Infor M3 Finance — eBook — ₹499</option>
-                      <option value="mfg_ebook">Mastering Infor M3 Manufacturing — eBook — ₹499</option>
-                      <option value="scm_ebook">Mastering Infor M3 SCM Management — eBook — ₹499</option>
-                      <option value="tec_ebook">Mastering Infor M3 Technical Foundation — eBook — ₹499</option>
+                    <optgroup label="📘 Individual eBooks — ₹699 each">
+                      <option value="qms_ebook">Mastering Infor M3 QMS — eBook — ₹699</option>
+                      <option value="eam_ebook">Mastering Infor M3 EAM — eBook — ₹699</option>
+                      <option value="crm_ebook">Mastering Infor M3 Sales CRM — eBook — ₹699</option>
+                      <option value="fin_ebook">Mastering Infor M3 Finance — eBook — ₹699</option>
+                      <option value="mfg_ebook">Mastering Infor M3 Manufacturing — eBook — ₹699</option>
+                      <option value="scm_ebook">Mastering Infor M3 SCM Management — eBook — ₹699</option>
+                      <option value="tec_ebook">Mastering Infor M3 Technical Foundation — eBook — ₹699</option>
                     </optgroup>
                     <optgroup label="🎁 Combo Bundle — Best Value">
-                      <option value="all_combo">All 7 Infor M3 eBooks — Combo Bundle — ₹2,499</option>
+                      <option value="all_combo">All 7 Infor M3 eBooks — Combo Bundle — ₹2,999</option>
                     </optgroup>
                   </select>
                 </div>
@@ -1518,14 +1528,14 @@
 
   /* ── M3 Training module catalogue ── */
   var GUIDES = {
-    qms_ebook:   { name:'Mastering Infor M3 QMS — eBook',                   price:499  },
-    eam_ebook:   { name:'Mastering Infor M3 EAM — eBook',                   price:499  },
-    crm_ebook:   { name:'Mastering Infor M3 Sales CRM — eBook',             price:499  },
-    fin_ebook:   { name:'Mastering Infor M3 Finance — eBook',               price:499  },
-    mfg_ebook:   { name:'Mastering Infor M3 Manufacturing — eBook',         price:499  },
-    scm_ebook:   { name:'Mastering Infor M3 SCM Management — eBook',        price:499  },
-    tec_ebook:   { name:'Mastering Infor M3 Technical Foundation — eBook',  price:499  },
-    all_combo:   { name:'All 7 Infor M3 eBooks — Combo Bundle',             price:2499 },
+    qms_ebook:   { name:'Mastering Infor M3 QMS — eBook',                   price:699  },
+    eam_ebook:   { name:'Mastering Infor M3 EAM — eBook',                   price:699  },
+    crm_ebook:   { name:'Mastering Infor M3 Sales CRM — eBook',             price:699  },
+    fin_ebook:   { name:'Mastering Infor M3 Finance — eBook',               price:699  },
+    mfg_ebook:   { name:'Mastering Infor M3 Manufacturing — eBook',         price:699  },
+    scm_ebook:   { name:'Mastering Infor M3 SCM Management — eBook',        price:699  },
+    tec_ebook:   { name:'Mastering Infor M3 Technical Foundation — eBook',  price:699  },
+    all_combo:   { name:'All 7 Infor M3 eBooks — Combo Bundle',             price:2999 },
   };
 
   var UPI_ID   = 'nikivernekar@okicici';
